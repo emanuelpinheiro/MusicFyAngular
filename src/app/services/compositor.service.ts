@@ -6,7 +6,7 @@ import { Compositor } from '../models/compositor.model';
 @Injectable({
   providedIn: 'root'
 })
-export class compositorService {
+export class CompositorService {
   private baseUrl = 'http://localhost:8080/compositor';
 
   constructor(private httpClient: HttpClient) {  }
