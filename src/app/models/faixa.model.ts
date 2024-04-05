@@ -1,4 +1,4 @@
-export class Gravadora{
+export class Faixa{
     id!: number;
     nome!: string;
 }

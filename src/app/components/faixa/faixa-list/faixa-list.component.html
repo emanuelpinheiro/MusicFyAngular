@@ -3,14 +3,14 @@
       <button mat-icon-button routerLink="/">
         <mat-icon>home</mat-icon> 
       </button>
-      <span class="toolbar-title">Controle de Gravadoras</span>
-      <button mat-fab color="accent" routerLink="/gravadoras/new">
+      <span class="toolbar-title">Controle de Faixas</span>
+      <button mat-fab color="accent" routerLink="/faixas/new">
         <mat-icon>add</mat-icon>
       </button>
     </div>
   </mat-toolbar>
   
-  <table mat-table [dataSource]="gravadoras" class="mat-elevation-z8">
+  <table mat-table [dataSource]="listFaixas" class="mat-elevation-z8">
   
       <!-- Position Column -->
       <ng-container matColumnDef="id">
@@ -30,7 +30,7 @@
         <td mat-cell *matCellDef="let element"> 
           <button mat-icon-button 
                   color="primary"
-                  routerLink="/gravadoras/edit/{{element.id}}">
+                  routerLink="/faixas/edit/{{element.id}}">
                   <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button 

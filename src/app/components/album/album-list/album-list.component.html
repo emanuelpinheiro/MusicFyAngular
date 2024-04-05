@@ -1,11 +1,15 @@
 <mat-toolbar color="primary">
-    <div class="flex-container">
-      <span class="toolbar-title">Controle de Albuns</span>
-      <button mat-fab color="accent" routerLink="/albuns/new">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-  </mat-toolbar>
+  <div class="flex-container">
+    <button mat-icon-button routerLink="/">
+      <mat-icon>home</mat-icon> 
+    </button>
+    <span class="toolbar-title">Controle de Albuns</span>
+    <button mat-fab color="accent" routerLink="/albuns/new">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
   
   <table mat-table [dataSource]="albums" class="mat-elevation-z8">
   
