@@ -19,6 +19,10 @@ export class GravadoraService {
     return this.httpClient.get<Gravadora>(`${this.baseUrl}/${id}`);
   }
 
+  findByNome(nome: string): Observable<Gravadora[]> {
+    return this.httpClient.get<Gravadora[]>(`${this.baseUrl}/nome/${nome}`);
+  }
+
   insert(gravadora: Gravadora): Observable<Gravadora> {
     return this.httpClient.post<Gravadora>(this.baseUrl, gravadora);
   }
