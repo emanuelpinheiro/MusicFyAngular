@@ -15,6 +15,15 @@ import { generoResolver } from './components/genero/resolver/genero.resolver';
 import { FaixaListComponent } from './components/faixa/faixa-list/faixa-list.component';
 import { FaixaFormComponent } from './components/faixa/faixa-form/faixa-form.component';
 import { faixaResolver } from './components/faixa/resolver/faixa-resolver';
+import { CompositorListComponent } from './components/compositor/compositor-list/compositor-list.component';
+import { CompositorFormComponent } from './components/compositor/compositor-form/compositor-form.component';
+import { compositorResolver } from './components/compositor/resolver/compositor-resolver';
+import { ClassificacaoEtariaListComponent } from './components/classificacaoetaria/classificacaoetaria-list/classificacaoetaria-list.component';
+import { ClassificacaoEtariaFormComponent } from './components/classificacaoetaria/classificacaoetaria-form/classificacaoetaria-form.component';
+import { classificacaoEtariaResolver } from './components/classificacaoetaria/resolver/classificacaoetaria-resolver';
+import { EdicaoEspecialListComponent } from './components/edicaoespecial/edicaoespecial-list/edicaoespecial-list.component';
+import { EdicaoEspecialFormComponent } from './components/edicaoespecial/edicaoespecial-form/edicaoespecial-form.component';
+import { edicaoespecialResolver } from './components/edicaoespecial/resolver/edicaoespecial-resolver';
 
 export const routes: Routes = [    
 
@@ -40,7 +49,16 @@ export const routes: Routes = [
 { path: 'faixas/new', component: FaixaFormComponent, title: 'Nova Faixa'},
 { path: 'faixas/edit/:id', component: FaixaFormComponent, resolve: {faixa: faixaResolver}},
 
+{ path: 'compositores', component: CompositorListComponent, title: 'Lista de Compositores'},
+{ path: 'compositores/new', component: CompositorFormComponent, title: 'Novo Compositor'},
+{ path: 'compositores/edit/:id', component: CompositorFormComponent, resolve: {compositor: compositorResolver}},
 
+{ path: 'classificacaoetaria', component: ClassificacaoEtariaListComponent, title: 'Lista de Classificação Etária'},
+{ path: 'classificacaoetaria/new', component: ClassificacaoEtariaFormComponent, title: 'Nova Classificação Etária'},
+{ path: 'classificacaoetaria/edit/:id', component: ClassificacaoEtariaFormComponent, resolve: {classificacaoEtaria: classificacaoEtariaResolver}},
 
+{ path: 'edicaoespecial', component: EdicaoEspecialListComponent, title: 'Lista de Edição Especial'},
+{ path: 'edicaoespecial/new', component: EdicaoEspecialFormComponent, title: 'Nova Edição Especial'},
+{ path: 'edicaoespecial/edit/:id', component: EdicaoEspecialFormComponent, resolve: {edicaoEspecial: edicaoespecialResolver}},
 
 ];
