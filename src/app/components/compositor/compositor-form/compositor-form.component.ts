@@ -33,7 +33,7 @@ import { Compositor } from '../../../models/compositor.model';
       this.formGroup = formBuilder.group({
         id: [(compositor && compositor.id) ? compositor.id : null],
         nome: [(compositor && compositor.nome) ? compositor.nome : '', Validators.required],
-        nacionalidade: [(compositor && compositor.descricao) ? compositor.descricao : '', Validators.required]
+        descricao: [(compositor && compositor.descricao) ? compositor.descricao : '', Validators.required]
       });
   
     }
