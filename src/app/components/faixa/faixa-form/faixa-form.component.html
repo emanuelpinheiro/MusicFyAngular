@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="toolbar-title">Cadastro de Artista</mat-toolbar>
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Faixa</mat-toolbar>
 <div class="form-container">
     <mat-card>
         <mat-card-content>
@@ -10,15 +10,6 @@
                                    && formGroup.get('nome')?.invalid
                                    && formGroup.get('nome')?.touched">
                         O nome é obrigatorio.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>Descricao</mat-label>
-                    <textarea matInput placeholder="Adicione a descrição" formControlName="descricao"></textarea>
-                    <mat-error *ngIf="formGroup.get('descricao') 
-                                   && formGroup.get('descricao')?.invalid
-                                   && formGroup.get('descricao')?.touched">
-                        A descricao é obrigatoria.
                     </mat-error>
                 </mat-form-field>
             </form>
@@ -38,7 +29,7 @@
                 Excluir 
             </button>
             <button mat-raised-button  
-                    routerLink="/artistas"> 
+                    routerLink="/faixas"> 
                 Cancelar 
             </button>
 

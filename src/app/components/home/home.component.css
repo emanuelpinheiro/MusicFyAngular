@@ -1,0 +1,9 @@
+.example-button-row {
+  display: flex;
+  justify-content: center;
+  padding-top: 10vh;
+
+  button {
+    margin: 10px;
+  }
+}

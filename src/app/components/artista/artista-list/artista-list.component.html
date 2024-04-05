@@ -1,5 +1,8 @@
 <mat-toolbar color="primary">
     <div class="flex-container">
+      <button mat-icon-button routerLink="/">
+        <mat-icon>home</mat-icon> 
+      </button>
       <span class="toolbar-title">Controle de Artistas</span>
       <button mat-fab color="accent" routerLink="/artistas/new">
         <mat-icon>add</mat-icon>
@@ -7,7 +10,7 @@
     </div>
   </mat-toolbar>
   
-  <table mat-table [dataSource]="artistas" class="mat-elevation-z8">
+  <table mat-table [dataSource]="listArtistas" class="mat-elevation-z8">
   
       <!-- Position Column -->
       <ng-container matColumnDef="id">

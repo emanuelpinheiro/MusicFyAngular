@@ -18,16 +18,21 @@ import { Artista } from '../../../models/artista.models';
 })
 
 export class ArtistaListComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'nome', 'descicao', 'acao'];
-    artistas: Artista[] = [];
+    displayedColumns: string[] = ['id', 'nome', 'acao'];
+    listArtistas: Artista[] = [];
   
     constructor(private artistaService: ArtistaService) {
   
     }
   
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+      await this.getAllArtistas();
+    }
+
+    async getAllArtistas(){
       this.artistaService.findAll().subscribe(data => {
-        this.artistas = data;
+        this.listArtistas = data;
+        console.log(this.listArtistas)
       })
     }
   

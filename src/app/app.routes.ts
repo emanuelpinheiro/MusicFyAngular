@@ -8,10 +8,17 @@ import { ArtistaFormComponent } from './components/artista/artista-form/artista-
 import { albumResolver } from './components/album/resolver/album-resolver';
 import { AlbumFormComponent } from './components/album/album-form/album-form.component';
 import { AlbumListComponent } from './components/album/album-list/album-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { GeneroListComponent } from './components/genero/genero-list/genero-list.component';
+import { GeneroFormComponent } from './components/genero/genero-form/genero-form.component';
+import { generoResolver } from './components/genero/resolver/genero.resolver';
+import { FaixaListComponent } from './components/faixa/faixa-list/faixa-list.component';
+import { FaixaFormComponent } from './components/faixa/faixa-form/faixa-form.component';
+import { faixaResolver } from './components/faixa/resolver/faixa-resolver';
 
 export const routes: Routes = [    
 
-
+{ path: '', component: HomeComponent, title: 'Home'},
 { path: 'gravadoras', component: GravadoraListComponent, title: 'Lista de Gravadoras'},
 { path: 'gravadoras/new', component: GravadoraFormComponent, title: 'Nova Gravadora'},
 { path: 'gravadoras/edit/:id', component: GravadoraFormComponent, resolve: {gravadora: gravadoraResolver}},
@@ -23,6 +30,17 @@ export const routes: Routes = [
 { path: 'albuns', component: AlbumListComponent, title: 'Lista de Albuns'},
 { path: 'albuns/new', component: AlbumFormComponent, title: 'Nova Album'},
 { path: 'albuns/edit/:id', component: AlbumFormComponent, resolve: {album: albumResolver}},
+
+
+{ path: 'generos', component: GeneroListComponent, title: 'Lista de Gêneros'},
+{ path: 'generos/new', component: GeneroFormComponent, title: 'Novo Gênero'},
+{ path: 'generos/edit/:id', component: GeneroFormComponent, resolve: {genero: generoResolver}},
+
+{ path: 'faixas', component: FaixaListComponent, title: 'Lista de Faixas'},
+{ path: 'faixas/new', component: FaixaFormComponent, title: 'Nova Faixa'},
+{ path: 'faixas/edit/:id', component: FaixaFormComponent, resolve: {faixa: faixaResolver}},
+
+
 
 
 ];

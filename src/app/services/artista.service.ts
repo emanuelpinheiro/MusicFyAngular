@@ -8,7 +8,7 @@ import { Artista } from '../models/artista.models';
   providedIn: 'root'
 })
 export class ArtistaService {
-  private baseUrl = 'http://localhost:8080/artista';
+  private baseUrl = 'http://localhost:8080/artistas';
 
   constructor(private httpClient: HttpClient) {  }
 

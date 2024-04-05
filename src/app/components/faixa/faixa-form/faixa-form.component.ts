@@ -3,58 +3,58 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ArtistaService } from '../../../services/artista.service';
+import { FaixaService } from '../../../services/faixa.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Artista } from '../../../models/artista.models';
+import { Faixa } from '../../../models/faixa.model';
+//import { Faixa } from '../../../models/faixa.models';
 
 
 @Component({
-    selector: 'app-artista-form',
+    selector: 'app-faixa-form',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
       MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule],
-    templateUrl: './artista-form.component.html',
-    styleUrl: './artista-form.component.css'
+    templateUrl: './faixa-form.component.html',
+    styleUrl: './faixa-form.component.css'
   })
 
-  export class ArtistaFormComponent {
+  export class FaixaFormComponent {
 
     formGroup: FormGroup;
   
     constructor(private formBuilder: FormBuilder,
-      private artistaService: ArtistaService,
+      private faixaService: FaixaService,
       private router: Router,
       private activatedRoute: ActivatedRoute) {
   
-      const artista: Artista = activatedRoute.snapshot.data['artista'];
+      const faixa: Faixa = activatedRoute.snapshot.data['faixa'];
   
       this.formGroup = formBuilder.group({
-        id: [(artista && artista.id) ? artista.id : null],
-        nome: [(artista && artista.nome) ? artista.nome : '', Validators.required],
-        descricao: [(artista && artista.descricao) ? artista.descricao : '', Validators.required]
+        id: [(faixa && faixa.id) ? faixa.id : null],
+        nome: [(faixa && faixa.nome) ? faixa.nome : '', Validators.required]
       });
   
     }
   
     salvar() {
       if (this.formGroup.valid) {
-        const artista = this.formGroup.value;
-        if (artista.id ==null) {
-          this.artistaService.insert(artista).subscribe({
-            next: (artistaCadastrado) => {
-              this.router.navigateByUrl('/artistas');
+        const faixa = this.formGroup.value;
+        if (faixa.id ==null) {
+          this.faixaService.insert(faixa).subscribe({
+            next: (faixaCadastrado) => {
+              this.router.navigateByUrl('/faixas');
             },
             error: (err) => {
               console.log('Erro ao Incluir' + JSON.stringify(err));
             }
           });
         } else {
-          this.artistaService.update(artista).subscribe({
-            next: (artistaAlterado) => {
-              this.router.navigateByUrl('/artistas');
+          this.faixaService.update(faixa).subscribe({
+            next: (faixaAlterado) => {
+              this.router.navigateByUrl('/faixas');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -66,11 +66,11 @@ import { Artista } from '../../../models/artista.models';
   
     excluir() {
       if (this.formGroup.valid) {
-        const artista = this.formGroup.value;
-        if (artista.id != null) {
-          this.artistaService.delete(artista).subscribe({
+        const faixa = this.formGroup.value;
+        if (faixa.id != null) {
+          this.faixaService.delete(faixa).subscribe({
             next: () => {
-              this.router.navigateByUrl('/artistas');
+              this.router.navigateByUrl('/faixas');
             },
             error: (err) => {
               console.log('Erro ao Excluir' + JSON.stringify(err));
