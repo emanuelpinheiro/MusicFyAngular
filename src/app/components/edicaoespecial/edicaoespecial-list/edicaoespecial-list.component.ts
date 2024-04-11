@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 
 export class EdicaoEspecialListComponent implements OnInit {
     displayedColumns: string[] = ['id', 'descricao', 'conteudoAdicional', 'precoExtra', 'acao'];
-    edicaoespeciais: EdicaoEspecial[] = [];
+    edicaoespecial: EdicaoEspecial[] = [];
 
     constructor(private edicaoespecialService: EdicaoEspecialService) {
   
@@ -26,7 +26,7 @@ export class EdicaoEspecialListComponent implements OnInit {
   
     ngOnInit(): void {
       this.edicaoespecialService.findAll().subscribe(data => {
-        this.edicaoespeciais = data;
+        this.edicaoespecial = data;
       })
     }
   

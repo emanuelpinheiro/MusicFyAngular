@@ -7,7 +7,7 @@ import { Compositor } from '../models/compositor.model';
   providedIn: 'root'
 })
 export class CompositorService {
-  private baseUrl = 'http://localhost:8080/compositor';
+  private baseUrl = 'http://localhost:8080/compositores';
 
   constructor(private httpClient: HttpClient) {  }
 

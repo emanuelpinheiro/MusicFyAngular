@@ -11,7 +11,6 @@
   </mat-toolbar>
   
   <table mat-table [dataSource]="gravadoras" class="mat-elevation-z8">
-  
       <!-- Position Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -39,7 +38,6 @@
           </button>        
         </td>
       </ng-container>
-    
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

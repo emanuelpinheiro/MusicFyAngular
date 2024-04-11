@@ -67,15 +67,17 @@ import { EdicaoEspecial } from '../../../models/edicaoespecial.model';
 
     excluir() {
         if (this.formGroup.valid) {
-            const edicaoespecial = this.formGroup.value;
-            this.edicaoespecialService.delete(edicaoespecial.id).subscribe({
-            next: (edicaoespecialExcluido) => {
-                this.router.navigateByUrl('/edicaoespecial');
-            },
-            error: (err) => {
+          const edicaoespecial = this.formGroup.value;
+          if (edicaoespecial.id != null) {
+            this.edicaoespecialService.delete(edicaoespecial).subscribe({
+              next: () => {
+                this.router.navigateByUrl('/gravadoras');
+              },
+              error: (err) => {
                 console.log('Erro ao Excluir' + JSON.stringify(err));
-            }
+              }
             });
+          }
         }
     }
   }

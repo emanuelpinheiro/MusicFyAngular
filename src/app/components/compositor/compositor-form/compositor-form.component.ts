@@ -44,7 +44,7 @@ import { Compositor } from '../../../models/compositor.model';
         if (compositor.id ==null) {
           this.compositorService.insert(compositor).subscribe({
             next: (compositorCadastrado) => {
-              this.router.navigateByUrl('/compositor');
+              this.router.navigateByUrl('/compositores');
             },
             error: (err) => {
               console.log('Erro ao Salvar' + JSON.stringify(err));
@@ -53,7 +53,7 @@ import { Compositor } from '../../../models/compositor.model';
         } else {
           this.compositorService.update(compositor).subscribe({
             next: (compositorAlterado) => {
-              this.router.navigateByUrl('/compositor');
+              this.router.navigateByUrl('/compositores');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -67,8 +67,8 @@ import { Compositor } from '../../../models/compositor.model';
       if (this.formGroup.valid) {
         const compositor = this.formGroup.value;
         this.compositorService.delete(compositor).subscribe({
-          next: (compositorExcluido) => {
-            this.router.navigateByUrl('/compositor');
+          next: () => {
+            this.router.navigateByUrl('/compositores');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

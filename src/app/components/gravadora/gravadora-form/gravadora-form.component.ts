@@ -46,7 +46,7 @@ import { Gravadora } from '../../../models/gravadora.model';
               this.router.navigateByUrl('/gravadoras');
             },
             error: (err) => {
-              console.log('Erro ao Incluir' + JSON.stringify(err));
+              console.log('Erro ao Salvar' + JSON.stringify(err));
             }
           });
         } else {
