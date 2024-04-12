@@ -1,0 +1,55 @@
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Edição Especial</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Descrição</mat-label>
+                    <input matInput type="text" formControlName="descricao">
+                    <mat-error *ngIf="formGroup.get('descricao') 
+                                   && formGroup.get('descricao')?.invalid
+                                   && formGroup.get('descricao')?.touched">
+                        A descrição é obrigatória.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Conteúdo Adicional</mat-label>
+                    <input matInput type="text" formControlName="conteudoAdicional">
+                    <mat-error *ngIf="formGroup.get('conteudoAdicional') 
+                                   && formGroup.get('conteudoAdicional')?.invalid
+                                   && formGroup.get('conteudoAdicional')?.touched">
+                        O Conteúdo Adicional é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Preço</mat-label>
+                    <input matInput type="number" formControlName="precoExtra">
+                    <mat-error *ngIf="formGroup.get('precoExtra') 
+                                   && formGroup.get('precoExtra')?.invalid
+                                   && formGroup.get('precoExtra')?.touched">
+                        O preço extra é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="salvar()"
+                    [disabled]="formGroup.invalid"> 
+                Salvar 
+            </button>
+            <button mat-raised-button 
+                    *ngIf="formGroup?.get('id')?.value"
+                    color="warn" 
+                    (click)="excluir()"
+                    [disabled]="formGroup.invalid"> 
+                Excluir 
+            </button>
+            <button mat-raised-button  
+                    routerLink="/edicaoespecial"> 
+                Cancelar 
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

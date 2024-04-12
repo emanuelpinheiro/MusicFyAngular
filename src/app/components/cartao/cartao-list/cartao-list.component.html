@@ -1,0 +1,48 @@
+<!-- <mat-toolbar color="primary">
+    <div class="flex-container">
+      <span class="toolbar-title">Controle de Cartão</span>
+      <button mat-fab color="accent" routerLink="/cartao/new">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+    <div class="table-container">
+        <mat-table [dataSource]="cartoes" class="mat-elevation-z8">
+    
+        <ng-container matColumnDef="tipoCartao">
+            <mat-header-cell *matHeaderCellDef> Tipo de Cartão </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.tipoCartao}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="nomeTitular">
+            <mat-header-cell *matHeaderCellDef> Nome do Titular </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nomeTitular}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="numeroCartao">
+            <mat-header-cell *matHeaderCellDef> Número do Cartão </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.numeroCartao}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="nomeImpressoCartao">
+            <mat-header-cell *matHeaderCellDef> Nome Impresso no Cartão </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nomeImpressoCartao}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="editar(element)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="excluir(element)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+        </mat-table> -->
