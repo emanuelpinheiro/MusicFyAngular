@@ -49,7 +49,7 @@ import { EdicaoEspecial } from '../../../models/edicaoespecial.model';
               this.router.navigateByUrl('/edicaoespecial');
             },
             error: (err) => {
-              console.log('Erro ao Incluir' + JSON.stringify(err));
+              console.log('Erro ao Salvar' + JSON.stringify(err));
             }
           });
         } else {
