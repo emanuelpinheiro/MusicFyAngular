@@ -24,6 +24,7 @@ import { classificacaoEtariaResolver } from './components/classificacaoetaria/re
 import { EdicaoEspecialListComponent } from './components/edicaoespecial/edicaoespecial-list/edicaoespecial-list.component';
 import { EdicaoEspecialFormComponent } from './components/edicaoespecial/edicaoespecial-form/edicaoespecial-form.component';
 import { edicaoespecialResolver } from './components/edicaoespecial/resolver/edicaoespecial-resolver';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [    
 
@@ -60,5 +61,7 @@ export const routes: Routes = [
 { path: 'edicaoespecial', component: EdicaoEspecialListComponent, title: 'Lista de Edição Especial'},
 { path: 'edicaoespecial/new', component: EdicaoEspecialFormComponent, title: 'Nova Edição Especial'},
 { path: 'edicaoespecial/edit/:id', component: EdicaoEspecialFormComponent, resolve: {edicaoEspecial: edicaoespecialResolver}},
+
+{ path: 'login', component: LoginComponent, title: 'Login'},
 
 ];
