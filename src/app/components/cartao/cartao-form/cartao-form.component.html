@@ -1,0 +1,65 @@
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Cartões</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Tipo de Cartão</mat-label>
+                    <input matInput type="text" formControlName="tipoCartao">
+                    <mat-error *ngIf="formGroup.get('tipoCartao') 
+                                   && formGroup.get('tipoCartao')?.invalid
+                                   && formGroup.get('tipoCartao')?.touched">
+                        O tipo de cartão é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Nome do Titular</mat-label>
+                    <input matInput type="text" formControlName="nomeTitular">
+                    <mat-error *ngIf="formGroup.get('nomeTitular') 
+                                   && formGroup.get('nomeTitular')?.invalid
+                                   && formGroup.get('nomeTitular')?.touched">
+                        O nome do titular é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Número do Cartão</mat-label>
+                    <input matInput type="text" formControlName="numeroCartao">
+                    <mat-error *ngIf="formGroup.get('numeroCartao') 
+                                   && formGroup.get('numeroCartao')?.invalid
+                                   && formGroup.get('numeroCartao')?.touched">
+                        O número do cartão é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Nome Impresso no Cartão</mat-label>
+                    <input matInput type="text" formControlName="nomeImpressoCartao">
+                    <mat-error *ngIf="formGroup.get('nomeImpressoCartao') 
+                                   && formGroup.get('nomeImpressoCartao')?.invalid
+                                   && formGroup.get('nomeImpressoCartao')?.touched">
+                        O nome impresso no cartão é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="salvar()"
+                    [disabled]="formGroup.invalid"> 
+                Salvar 
+            </button>
+            <button mat-raised-button 
+                    *ngIf="formGroup?.get('id')?.value"
+                    color="warn" 
+                    (click)="excluir()"
+                    [disabled]="formGroup.invalid"> 
+                Excluir 
+            </button>
+            <button mat-raised-button  
+                    routerLink="/cartao"> 
+                Cancelar 
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
