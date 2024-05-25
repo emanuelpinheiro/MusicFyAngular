@@ -5,14 +5,16 @@ import { MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardTitle } 
 import { CdService } from '../../../services/cd.service';
 import { CarrinhoService } from '../../../services/carrinho.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Cd } from '../../../models/cd.model';
 
 // tipo personalizado de dados, como classes e interfaces, porém mais simples.
-type Cd = {
-  id: number;
+type Card = {
+  idCd: number;
   nome: string;
   preco: number;
-  nomeImagem: string;
+  urlImagem: string;
 }
+
 
 @Component({
   selector: 'app-cd-card-list',
@@ -23,7 +25,7 @@ type Cd = {
 })
 export class CdCardListComponent implements OnInit{
 
-  cards = signal<Cd[]> ([]);
+  cards = signal<Card[]> ([]);
   cds: Cd[] = [];
 
   constructor(private cdService: CdService, 
@@ -38,27 +40,28 @@ export class CdCardListComponent implements OnInit{
     // buscando todos os cds
     this.cdService.findAll(0, 10).subscribe(data => {
       this.cds = data;
+      console.log("🚀 ~ CdCardListComponent ~ this.cdService.findAll ~ this.cds:", this.cds)
       this.carregarCards();
     });
   }
 
   carregarCards() {
-    const cards: Cd[] = [];
+    const cards: Card[] = [];
     this.cds.forEach(cd => {
       cards.push({
-        id: cd.id,
+        idCd: cd.id,
         nome: cd.nome,
         preco: cd.preco,
-        nomeImagem: cd.nomeImagem
+        urlImagem: cd.nomeImagem
       });
     });
     this.cards.set(cards);
-  }
+  }  
 
-  adicionarAoCarrinho(card: Cd) {
+  adicionarAoCarrinho(card: Card) {
     this.showSnackbarTopPosition('Produto adicionado ao carrinho!', 'Fechar');
     this.carrinhoService.adicionar({
-      id: card.id,
+      id: card.idCd,
       nome: card.nome,
       preco: card.preco,
       quantidade: 1
