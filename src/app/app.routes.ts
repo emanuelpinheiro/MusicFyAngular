@@ -29,6 +29,10 @@ import { UserTemplateComponent } from './components/template/user-template/user-
 import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ConsultaCardListComponent } from './components/consulta-card-list/consulta-card-list.component';
+import { CdListComponent } from './components/cd/cd-list/cd-list.component';
+import { CdFormComponent } from './components/cd/cd-form/cd-form.component';
+import { cdResolver } from './components/cd/resolver/cd.resolver';
+import { CdCardListComponent } from './components/cd-card-list/cd-card-list/cd-card-list.component';
 
 
 export const routes: Routes = [  
@@ -38,10 +42,10 @@ export const routes: Routes = [
         component: UserTemplateComponent, 
         title: 'e-commerce',
         children: [
-            {path: '', pathMatch: 'full', redirectTo: 'produtos'},
+            { path: '', component: LoginComponent, title: 'Login'}, 
             //{ path: '', component: HomeComponent, title: 'Home'},
 
-            { path: 'produtos', component: ConsultaCardListComponent, title: 'Produtos à Venda'},
+            { path: 'produtos', component: CdCardListComponent, title: 'Produtos à Venda'},
             { path: 'login', component: LoginComponent, title: 'Login'},
             { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos'},
         ]
@@ -88,6 +92,10 @@ export const routes: Routes = [
             { path: 'edicaoespecial', component: EdicaoEspecialListComponent, title: 'Lista de Edição Especial'},
             { path: 'edicaoespecial/new', component: EdicaoEspecialFormComponent, title: 'Nova Edição Especial'},
             { path: 'edicaoespecial/edit/:id', component: EdicaoEspecialFormComponent, resolve: {edicaoEspecial: edicaoespecialResolver}},
+
+            { path: 'cd', component: CdListComponent, title: 'Lista de CDs'},
+            { path: 'cd/new', component: CdFormComponent, title: 'Novo CDs'},
+            { path: 'cd/edit/:id', component: CdFormComponent, resolve: {cd: cdResolver}},
 
 
 
