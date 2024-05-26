@@ -52,7 +52,7 @@ export class CdCardListComponent implements OnInit{
         idCd: cd.id,
         nome: cd.nome,
         preco: cd.preco,
-        urlImagem: cd.nomeImagem
+        urlImagem: this.cdService.getUrlImagem(cd.nomeImagem)
       });
     });
     this.cards.set(cards);
