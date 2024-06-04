@@ -9,13 +9,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthService } from '../../services/auth.service';
 import { NgIf } from '@angular/common';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
     MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
-    RouterModule],
+    RouterModule, MatGridListModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -42,8 +43,9 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.get('password')!.value;
       this.authService.login(email, password).subscribe({
         next: (resp) => {
+          console.log("🚀 ~ LoginComponent ~ this.authService.login ~ resp:", resp)
           // redirecionar para a página principal
-          this.router.navigateByUrl('/produtos');
+          this.router.navigateByUrl('/loja/produtos');
         },
         error: (err) => {
           console.log(err);
@@ -65,5 +67,9 @@ export class LoginComponent implements OnInit {
       verticalPosition: "top", // Allowed values are  'top' | 'bottom'
       horizontalPosition: "center" // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
     });
+  }
+
+  cadastrar() {
+    this.router.navigateByUrl('/cadastro');
   }
 }
