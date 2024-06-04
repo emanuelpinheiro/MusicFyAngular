@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Usuario } from '../models/usuario.model';
 import { LocalizedString } from '@angular/compiler';
 import { LocalStorageService } from './local-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, 
               private localStorageService : LocalStorageService,
-              private jwtHelper: JwtHelperService) {
+              private jwtHelper: JwtHelperService,
+              private router: Router) {
 
     this.initUsuarioLogado();
 
@@ -28,7 +30,6 @@ export class AuthService {
     const usuario = localStorage.getItem(this.usuarioLogadoKey);
     if (usuario) {
       const usuarioLogado = JSON.parse(usuario);
-
       this.setUsuarioLogado(usuarioLogado);
       this.usuarioLogadoSubject.next(usuarioLogado);
     }
@@ -49,7 +50,6 @@ export class AuthService {
         if (authToken) {
           this.setToken(authToken);
           const usuarioLogado = res.body;
-          console.log(usuarioLogado);
           if (usuarioLogado) {
             this.setUsuarioLogado(usuarioLogado);
             this.usuarioLogadoSubject.next(usuarioLogado);
