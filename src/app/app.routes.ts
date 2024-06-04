@@ -33,20 +33,22 @@ import { CdListComponent } from './components/cd/cd-list/cd-list.component';
 import { CdFormComponent } from './components/cd/cd-form/cd-form.component';
 import { cdResolver } from './components/cd/resolver/cd.resolver';
 import { CdCardListComponent } from './components/cd-card-list/cd-card-list/cd-card-list.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
 
 
 export const routes: Routes = [  
     
+    { path: 'login', component: LoginComponent, title: 'Login'},
+    { path: '', component: LoginComponent, title: 'Login'},
+    { path: 'cadastro', component: CadastroComponent, title: 'Cadastro de Usuário'},
+
     { 
-        path: '', 
+        path: 'loja', 
         component: UserTemplateComponent, 
         title: 'e-commerce',
         children: [
-            { path: '', component: LoginComponent, title: 'Login'}, 
             //{ path: '', component: HomeComponent, title: 'Home'},
-
             { path: 'produtos', component: CdCardListComponent, title: 'Produtos à Venda'},
-            { path: 'login', component: LoginComponent, title: 'Login'},
             { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos'},
         ]
 
