@@ -25,9 +25,27 @@ export class GravadoraListComponent implements OnInit {
     }
   
     ngOnInit(): void {
+      this.listarGravadoras();
+    }
+
+    excluir(gravadora: Gravadora) {
+        if (gravadora.id != null) {
+          this.gravadoraService.delete(gravadora).subscribe({
+            next: () => {
+              this.listarGravadoras();
+            },
+            error: (err) => {
+              console.log('Erro ao Excluir' + JSON.stringify(err));
+            }
+          });
+        }
+    }
+
+    listarGravadoras() {
       this.gravadoraService.findAll().subscribe(data => {
         this.gravadoras = data;
       })
     }
+
   
   }
