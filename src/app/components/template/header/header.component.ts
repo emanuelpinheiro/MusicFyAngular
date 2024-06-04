@@ -9,7 +9,7 @@ import { SidebarService } from '../../../services/sidebar.service';
 import { CarrinhoService } from '../../../services/carrinho.service';
 import { Subscription } from 'rxjs';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private sidebarService: SidebarService,
     private carrinhoService: CarrinhoService,
     private authService: AuthService,
-    private localStorageService: LocalStorageService) {
+    private router: Router) {
 
   }
 
@@ -60,5 +60,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   deslogar() {
     this.authService.removeToken()
     this.authService.removeUsuarioLogado();
+    this.router.navigateByUrl('/login');
   }
 }
