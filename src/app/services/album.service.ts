@@ -11,8 +11,22 @@ export class AlbumService {
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(): Observable<Album[]> {
-    return this.httpClient.get<Album[]>(this.baseUrl);
+  findAll(page?: number, pageSize?: number): Observable<Album[]> {
+    // variavel de escopo de bloco
+    let params = {};
+
+    if (page !== undefined && pageSize !== undefined) {
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
+
+    return this.httpClient.get<Album[]>(`${this.baseUrl}`, {params});
+  }
+
+  count(): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/count`);
   }
 
   findById(id: string): Observable<Album> {

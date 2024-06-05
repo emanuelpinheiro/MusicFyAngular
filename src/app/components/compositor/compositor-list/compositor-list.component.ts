@@ -7,11 +7,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-compositor-list',
   standalone: true,
-  imports: [NgFor, MatButtonModule, MatIconModule, MatToolbarModule, MatTableModule, RouterModule],
+  imports: [NgFor, MatButtonModule, MatIconModule, MatToolbarModule, MatTableModule, RouterModule, MatPaginatorModule],
   templateUrl: './compositor-list.component.html',
   styleUrl: './compositor-list.component.css'
 })
@@ -19,6 +20,11 @@ import { RouterModule } from '@angular/router';
 export class CompositorListComponent implements OnInit {
     displayedColumns: string[] = ['id', 'nome', 'descricao', 'acao'];
     compositores: Compositor[] = [];
+
+    // variaveis de controle de paginacao
+    totalRecords = 0;
+    pageSize = 2;
+    page = 0;
 
     constructor(private compositorService: CompositorService) {
   
@@ -30,10 +36,22 @@ export class CompositorListComponent implements OnInit {
     }
 
     listarCompositor(){
-      this.compositorService.findAll().subscribe(data => {
-        this.compositores = data;
-      })
-    }
+      this.compositorService.findAll(this.page, this.pageSize).subscribe(data => {
+      this.compositores = data;
+      console.log(this.compositores);
+    });
+
+    this.compositorService.count().subscribe(data => {
+      this.totalRecords = data;
+      console.log(this.totalRecords);
+    });
+  }
+    // Método para paginar os resultados
+    paginar(event: PageEvent): void {
+      this.page = event.pageIndex;
+      this.pageSize = event.pageSize;
+      this.ngOnInit();
+      }
 
     
     excluir(compositor: Compositor) {

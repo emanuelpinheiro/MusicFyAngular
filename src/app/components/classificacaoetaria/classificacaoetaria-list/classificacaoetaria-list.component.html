@@ -1,5 +1,8 @@
 <mat-toolbar color="primary">
     <div class="flex-container">
+      <button mat-icon-button routerLink="/admin">
+        <mat-icon>home</mat-icon> 
+      </button>
       <span class="toolbar-title">Controle de Classificação Etária</span>
       <button mat-fab color="accent" routerLink="/classificacaoetaria/new">
         <mat-icon>add</mat-icon>
@@ -46,3 +49,10 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        
+        <mat-paginator 
+        [pageSizeOptions]="[2, 4, 8, 16]" 
+        [pageSize]="pageSize" 
+        [length]="totalRecords"
+        (page)="paginar($event)">
+      </mat-paginator>

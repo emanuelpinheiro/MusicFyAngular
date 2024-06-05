@@ -12,8 +12,22 @@ export class ClassificacaoEtariaService {
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(): Observable<ClassificacaoEtaria[]> {
-    return this.httpClient.get<ClassificacaoEtaria[]>(this.baseUrl);
+  findAll(page?: number, pageSize?: number): Observable<ClassificacaoEtaria[]> {
+    // variavel de escopo de bloco
+    let params = {};
+
+    if (page !== undefined && pageSize !== undefined) {
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
+
+    return this.httpClient.get<ClassificacaoEtaria[]>(`${this.baseUrl}`, {params});
+  }
+
+  count(): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/count`);
   }
 
   findById(id: string): Observable<ClassificacaoEtaria> {

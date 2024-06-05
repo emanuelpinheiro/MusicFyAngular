@@ -8,12 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Faixa } from '../../../models/faixa.model';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+
 //import { Faixa } from '../../../models/faixa.models';
 
 @Component({
   selector: 'app-faixa-list',
   standalone: true,
-  imports: [NgFor, MatButtonModule, MatIconModule, MatToolbarModule, MatTableModule, RouterModule],
+  imports: [NgFor, MatButtonModule, MatIconModule, MatToolbarModule, MatTableModule, RouterModule, MatPaginatorModule],
   templateUrl: './faixa-list.component.html',
   styleUrl: './faixa-list.component.css'
 })
@@ -21,7 +23,12 @@ import { Faixa } from '../../../models/faixa.model';
 export class FaixaListComponent implements OnInit {
     displayedColumns: string[] = ['id', 'nome', 'acao'];
     listFaixas: Faixa[] = [];
-  
+
+    // variaveis de controle de paginacao
+    totalRecords = 0;
+    pageSize = 2;
+    page = 0;
+
     constructor(private faixaService: FaixaService) {
   
     }
@@ -36,5 +43,12 @@ export class FaixaListComponent implements OnInit {
         console.log(this.listFaixas)
       })
     }
-  
+
+    // Método para paginar os resultados
+    paginar(event: PageEvent): void {
+      this.page = event.pageIndex;
+      this.pageSize = event.pageSize;
+      this.ngOnInit();
+      }
+      
   }
