@@ -32,11 +32,7 @@ export class ArtistaListComponent implements OnInit {
     }
   
     ngOnInit(): void {
-      this.artistaService.findAll(this.page, this.pageSize).subscribe(data => {
-        this.listArtistas = data;
-        console.log(this.listArtistas);
-      });
-  
+      this.listarArtistas();
       this.artistaService.count().subscribe(data => {
         this.totalRecords = data;
         console.log(this.totalRecords);
@@ -48,5 +44,24 @@ export class ArtistaListComponent implements OnInit {
       this.pageSize = event.pageSize;
       this.ngOnInit();
     }
+
+    excluir(artista: Artista) {
+        if (artista.id != null) {
+          this.artistaService.delete(artista).subscribe({
+            next: () => {
+              this.listarArtistas();
+            },
+            error: (err) => {
+              console.log('Erro ao Excluir' + JSON.stringify(err));
+            }
+          });
+      }
+    }
+    listarArtistas(){
+      this.artistaService.findAll().subscribe(data => {
+        this.listArtistas = data;
+      })
+    }
+
   
   }
