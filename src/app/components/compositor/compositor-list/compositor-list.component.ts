@@ -25,9 +25,28 @@ export class CompositorListComponent implements OnInit {
     }
   
     ngOnInit(): void {
+      this.listarCompositor();
+
+    }
+
+    listarCompositor(){
       this.compositorService.findAll().subscribe(data => {
         this.compositores = data;
       })
     }
-  
+
+    
+    excluir(compositor: Compositor) {
+      if (compositor.id != null) {
+        this.compositorService.delete(compositor).subscribe({
+          next: () => {
+            this.listarCompositor();
+          },
+          error: (err) => {
+            console.log('Erro ao Excluir' + JSON.stringify(err));
+          }
+        });
+    }
+  }
+
   }
