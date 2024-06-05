@@ -31,10 +31,11 @@
         <td mat-cell *matCellDef="let element"> 
           <button mat-icon-button 
                   color="primary"
-                  routerLink="/albuns/edit/{{element.id}}">
+                  routerLink="/admin/albuns/edit/{{element.id}}">
                   <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button 
+          <button mat-icon-button
+                  (click)="excluir(element)" 
                   color="warn">
                   <mat-icon>delete</mat-icon>
           </button>        
