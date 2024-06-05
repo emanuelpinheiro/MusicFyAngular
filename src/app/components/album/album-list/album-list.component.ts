@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 })
 
 export class AlbumListComponent implements OnInit {
+
     displayedColumns: string[] = ['id', 'nome', 'acao'];
     albums: Album[] = [];
   
@@ -25,9 +26,23 @@ export class AlbumListComponent implements OnInit {
     }
   
     ngOnInit(): void {
+      this.listarAlbuns();
+    }
+
+    listarAlbuns(){
       this.albumService.findAll().subscribe(data => {
         this.albums = data;
       })
     }
-  
+
+    excluir(album: Album){
+        this.albumService.delete(album).subscribe({
+          next: () => {
+            this.listarAlbuns();
+          },
+          error: (err) => {
+            console.log('Erro ao Excluir' + JSON.stringify(err));
+          }
+        });
+    }
   }
