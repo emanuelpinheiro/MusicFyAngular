@@ -1,0 +1,69 @@
+/* Arquivo: sidebar.component.css */
+
+/* Container do drawer */
+.container {
+    height: 100%;
+}
+
+/* Drawer estilizado */
+mat-drawer {
+    width: 250px;
+    background-color: white; /* Cor de fundo escura do Spotify */
+    color: white; /* Texto em branco */
+}
+
+/* Toolbar dentro do drawer */
+mat-toolbar {
+    background-color: #0c6c2d; /* Cor de fundo escura do Spotify */
+    color: white; /* Texto em branco */
+}
+
+/* Lista de navegação */
+mat-nav-list {
+    padding: 0;
+}
+
+mat-list-item {
+    color: white; /* Texto em branco */
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 1px solid #333; /* Separador */
+    margin: 0;
+}
+
+mat-list-item:hover {
+    background-color: #0c6c2d; /* Verde do Spotify */
+    color: white; /* Texto em branco */
+}
+
+mat-list-item:focus {
+    background-color: #189e47; /* Verde do Spotify */
+    color: white; /* Texto em branco */
+}
+
+/* Estilização dos links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Conteúdo do drawer */
+mat-drawer-content {
+    padding: 16px;
+}
+
+/* Texto do menu */
+span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Centralização do texto */
+.centered-text {
+    text-align: center;
+}
