@@ -5,11 +5,19 @@
     <span>Musicfy</span>
 
     <span class="example-spacer"></span>
-
-    <span>{{usuarioLogado?.nome}}</span>
-    <button routerLink="/loja/carrinho" mat-icon-button class="demo-section example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon [matBadge]="qtdItensCarrinho"  matBadgeColor="warn" matBadgePosition="after" matBadgeOverlap="false">shopping_cart</mat-icon>
+    <button routerLink="/search" mat-icon-button class="example-icon" aria-label="Example icon-button with search icon">
+        <mat-icon>search</mat-icon>
     </button>
+    <button routerLink="/favorites" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with favorite icon">
+        <mat-icon>favorite</mat-icon>
+    </button>
+    <button routerLink="/profile" mat-icon-button class="example-icon" aria-label="Example icon-button with account icon">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <button routerLink="/carrinho" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with shopping cart icon">
+        <mat-icon [matBadge]="qtdItensCarrinho" matBadgeColor="warn" matBadgePosition="after" matBadgeOverlap="false">shopping_cart</mat-icon>
+    </button>
+    <span>{{usuarioLogado?.nome}}</span>
 
     <button  mat-icon-button (click)="deslogar()">
       <mat-icon>exit_to_app</mat-icon>
