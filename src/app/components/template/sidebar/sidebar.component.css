@@ -54,7 +54,7 @@ a:hover {
 
 /* Conteúdo do drawer */
 mat-drawer-content {
-    padding: 16px;
+    padding: 0px;
 }
 
 /* Texto do menu */

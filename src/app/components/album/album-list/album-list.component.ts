@@ -19,7 +19,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 export class AlbumListComponent implements OnInit {
 
-    displayedColumns: string[] = ['id', 'nome', 'acao'];
+    displayedColumns: string[] = ['id', 'nome','anoLancamento','artistaNome','descricao','generoNome','gravadoraNome', 'acao'];
     albums: Album[] = [];
 
     // variaveis de controle de paginacao
@@ -38,6 +38,7 @@ export class AlbumListComponent implements OnInit {
     listarAlbuns(){
       this.albumService.findAll().subscribe(data => {
         this.albums = data;
+        console.log("🚀 ~ AlbumListComponent ~ this.albumService.findAll ~ this.albums:", this.albums)
       })
     }
 
