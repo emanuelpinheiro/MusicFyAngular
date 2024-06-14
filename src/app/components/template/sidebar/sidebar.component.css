@@ -33,7 +33,7 @@ mat-list-item {
 
 mat-list-item:hover {
     background-color: #0c6c2d; /* Verde do Spotify */
-    color: white; /* Texto em branco */
+    color: white!important; /* Texto em branco */
 }
 
 mat-list-item:focus {

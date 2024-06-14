@@ -55,7 +55,7 @@ import { MatSelectModule } from '@angular/material/select';
         if (edicaoespecial.id ==null) {
           this.edicaoespecialService.insert(edicaoespecial).subscribe({
             next: (edicaoespecialCadastrado) => {
-              this.router.navigateByUrl('/edicaoespecial');
+              this.router.navigateByUrl('/admin/edicaoespecial');
             },
             error: (err) => {
               console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -64,7 +64,7 @@ import { MatSelectModule } from '@angular/material/select';
         } else {
           this.edicaoespecialService.update(edicaoespecial).subscribe({
             next: (edicaoespecialAlterado) => {
-              this.router.navigateByUrl('/edicaoespecial');
+              this.router.navigateByUrl('/admin/edicaoespecial');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -80,7 +80,7 @@ import { MatSelectModule } from '@angular/material/select';
           if (edicaoespecial.id != null) {
             this.edicaoespecialService.delete(edicaoespecial).subscribe({
               next: () => {
-                this.router.navigateByUrl('/gravadoras');
+                this.router.navigateByUrl('/admin/edicaoespecial');
               },
               error: (err) => {
                 console.log('Erro ao Excluir' + JSON.stringify(err));

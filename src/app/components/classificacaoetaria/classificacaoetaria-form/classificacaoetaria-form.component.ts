@@ -69,7 +69,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         const classificacaoetaria = this.formGroup.value;
         this.classificacaoetariaService.delete(classificacaoetaria).subscribe({
           next: (classificacaoetariaExcluido) => {
-            this.router.navigateByUrl('/classificacaoetaria');
+            this.router.navigateByUrl('/admin/classificacaoetaria');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

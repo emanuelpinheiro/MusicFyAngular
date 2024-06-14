@@ -45,7 +45,7 @@ import { MatGridListModule, MatGridTile } from '@angular/material/grid-list';
         if (compositor.id ==null) {
           this.compositorService.insert(compositor).subscribe({
             next: (compositorCadastrado) => {
-              this.router.navigateByUrl('/compositores');
+              this.router.navigateByUrl('/admin/compositores');
             },
             error: (err) => {
               console.log('Erro ao Salvar' + JSON.stringify(err));
@@ -54,7 +54,7 @@ import { MatGridListModule, MatGridTile } from '@angular/material/grid-list';
         } else {
           this.compositorService.update(compositor).subscribe({
             next: (compositorAlterado) => {
-              this.router.navigateByUrl('/compositores');
+              this.router.navigateByUrl('/admin/compositores');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -69,7 +69,7 @@ import { MatGridListModule, MatGridTile } from '@angular/material/grid-list';
         const compositor = this.formGroup.value;
         this.compositorService.delete(compositor).subscribe({
           next: () => {
-            this.router.navigateByUrl('/compositores');
+            this.router.navigateByUrl('/admin/compositores');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

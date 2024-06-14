@@ -73,7 +73,7 @@ import { Compositor } from '../../../models/compositor.model';
         if (faixa.id ==null) {
           this.faixaService.insert(faixa).subscribe({
             next: (faixaCadastrado) => {
-              this.router.navigateByUrl('/faixas');
+              this.router.navigateByUrl('/admin/faixas');
             },
             error: (err) => {
               console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -82,7 +82,7 @@ import { Compositor } from '../../../models/compositor.model';
         } else {
           this.faixaService.update(faixa).subscribe({
             next: (faixaAlterado) => {
-              this.router.navigateByUrl('/faixas');
+              this.router.navigateByUrl('/admin/faixas');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -98,7 +98,7 @@ import { Compositor } from '../../../models/compositor.model';
         if (faixa.id != null) {
           this.faixaService.delete(faixa).subscribe({
             next: () => {
-              this.router.navigateByUrl('/faixas');
+              this.router.navigateByUrl('/admin/faixas');
             },
             error: (err) => {
               console.log('Erro ao Excluir' + JSON.stringify(err));
