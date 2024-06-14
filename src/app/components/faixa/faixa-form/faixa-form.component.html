@@ -12,8 +12,36 @@
                         O nome é obrigatorio.
                     </mat-error>
                 </mat-form-field>
+                <mat-grid-list cols="2" rowHeight="100px" gutterSize="8px">
+                    <mat-grid-tile>
+                        <mat-form-field class="full-width-input">
+                          <mat-label>Albuns</mat-label>
+                          <mat-select formControlName="id_album">
+                            @for (albuns of listAlbums; track albuns) {
+                            <mat-option [value]="albuns.id">{{albuns.nome}}</mat-option>
+                            }
+                          </mat-select>
+                        </mat-form-field>
+                      </mat-grid-tile>
+
+                      <mat-grid-tile>
+                        <mat-form-field class="full-width-input">
+                          <mat-label>Compositores</mat-label>
+                          <mat-select formControlName="id_compositor">
+                            @for (comp of listCompositores; track comp) {
+                            <mat-option [value]="comp.id">{{comp.nome}}</mat-option>
+                            }
+                          </mat-select>
+                        </mat-form-field>
+                      </mat-grid-tile>
+
+                </mat-grid-list>
+             
+
             </form>
         </mat-card-content>
+
+
         <mat-card-actions>
             <button mat-raised-button 
                     color="primary" 
