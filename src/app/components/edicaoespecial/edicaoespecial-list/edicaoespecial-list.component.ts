@@ -19,7 +19,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 })
 
 export class EdicaoEspecialListComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'descricao', 'conteudoAdicional', 'precoExtra', 'acao'];
+    displayedColumns: string[] = ['id', 'nome','albumNome', 'acao'];
     edicaoespecial: EdicaoEspecial[] = [];
 
     // variaveis de controle de paginacao
@@ -32,9 +32,7 @@ export class EdicaoEspecialListComponent implements OnInit {
     }
   
     ngOnInit(): void {
-      this.edicaoespecialService.findAll().subscribe(data => {
-        this.edicaoespecial = data;
-      })
+      this.listEdicoesEspeciais();
     }
 
     // Método para paginar os resultados
@@ -43,6 +41,27 @@ export class EdicaoEspecialListComponent implements OnInit {
       this.pageSize = event.pageSize;
       this.ngOnInit();
       }
+
+
+      excluir(edicao: EdicaoEspecial) {
+        if (edicao.id != null) {
+          this.edicaoespecialService.delete(edicao).subscribe({
+            next: () => {
+              this.listEdicoesEspeciais();
+            },
+            error: (err) => {
+              console.log('Erro ao Excluir' + JSON.stringify(err));
+            }
+          });
+      }
+    }
+
+    listEdicoesEspeciais(){
+      this.edicaoespecialService.findAll().subscribe(data => {
+        this.edicaoespecial = data;
+        console.log("🚀 ~ EdicaoEspecialListComponent ~ this.edicaoespecialService.findAll ~ this.edicaoespecial:", this.edicaoespecial)
+      })
+    }
 
   
   }

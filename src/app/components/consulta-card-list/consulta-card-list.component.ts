@@ -6,12 +6,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConsultaService } from '../../services/consulta.service';
 import { NgFor } from '@angular/common';
 import { MatButton } from '@angular/material/button';
+import { CdService } from '../../services/cd.service';
 
 // tipo personalizado de dados, como classes e interfaces, porém mais simples.
 type Card = {
   idConsulta: number;
   titulo: string;
   preco: number;
+  urlImagem: string;
 }
 
 @Component({
@@ -28,7 +30,8 @@ export class ConsultaCardListComponent implements OnInit {
 
   constructor(private consultaService: ConsultaService, 
               private carrinhoService: CarrinhoService,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private cdService: CdService) {}
 
   ngOnInit(): void {
     this.carregarConsultas();
@@ -48,7 +51,8 @@ export class ConsultaCardListComponent implements OnInit {
       cards.push({
         idConsulta: consulta.id,
         titulo: consulta.nome,
-        preco: consulta.preco
+        preco: consulta.preco,
+        urlImagem: this.cdService.getUrlImagem(consulta.nomeImagem)
       });
     });
     this.cards.set(cards);
@@ -59,6 +63,7 @@ export class ConsultaCardListComponent implements OnInit {
     this.carrinhoService.adicionar({
       id: card.idConsulta,
       nome: card.titulo,
+      nomeImagem: card.urlImagem,
       preco: card.preco,
       quantidade: 1
     })

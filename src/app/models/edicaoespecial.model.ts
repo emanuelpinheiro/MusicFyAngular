@@ -1,6 +1,7 @@
+import { Album } from "./album.model";
+
 export class EdicaoEspecial{
     id!: number;
-    descricao!: string;
-    conteudoAdicional!: string;
-    precoExtra!: number;
+    nome!: string;
+    album!: Album;
 }

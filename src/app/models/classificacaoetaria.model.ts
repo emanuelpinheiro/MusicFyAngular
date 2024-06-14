@@ -1,5 +1,5 @@
 export class ClassificacaoEtaria{
     id!: number;
-    faixaEtaria!: string;
+    faixaEtaria!: number;
     descricao!: string;
 }

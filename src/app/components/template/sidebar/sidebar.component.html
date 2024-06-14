@@ -4,7 +4,7 @@
         <mat-toolbar>
             <span>Menu</span>
         </mat-toolbar>
-        <mat-nav-list>
+        <mat-nav-list *ngIf="tipo === 2">
             <mat-list-item routerLink="/admin">Home</mat-list-item>
             <mat-list-item routerLink="/admin/gravadoras">Controle de Gravadoras</mat-list-item>
             <mat-list-item routerLink="/admin/artistas">Controle de Artistas</mat-list-item>
@@ -13,15 +13,17 @@
             <mat-list-item routerLink="/admin/faixas">Controle de Faixas</mat-list-item>
             <mat-list-item routerLink="/admin/compositores">Controle de Compositores</mat-list-item>
             <mat-list-item routerLink="/admin/classificacaoetaria">Controle de Classificação Etária</mat-list-item>
-            <mat-list-item routerLink="/admin/edicaoespeciais">Controle de Edição Especial</mat-list-item>
+            <mat-list-item routerLink="/admin/edicaoespecial">Controle de Edição Especial</mat-list-item>
             <mat-list-item routerLink="/admin/cd/new">Adicionar Produto</mat-list-item>
-            <mat-list-item routerLink="/loja/produtos">Produtos</mat-list-item>
-
-            
-
-
-
+            <mat-list-item routerLink="/admin">Produtos</mat-list-item>
         </mat-nav-list>
+
+        <mat-nav-list *ngIf="tipo === 1">
+            <mat-list-item routerLink="/loja/produtos">Produtos</mat-list-item>
+            <mat-list-item routerLink="/loja/minhas-compras">Minhas Compras</mat-list-item>
+            <mat-list-item routerLink="/loja/carrinho">Carrinho</mat-list-item>
+        </mat-nav-list>
+
     </mat-drawer>
 
     <mat-drawer-content>

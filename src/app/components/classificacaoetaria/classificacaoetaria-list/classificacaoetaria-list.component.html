@@ -4,7 +4,7 @@
         <mat-icon>home</mat-icon> 
       </button>
       <span class="toolbar-title">Controle de Classificação Etária</span>
-      <button mat-fab color="accent" routerLink="/classificacaoetaria/new">
+      <button mat-fab color="accent" routerLink="/admin/classificacaoetaria/new">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -36,7 +36,7 @@
             <td mat-cell *matCellDef="let element"> 
             <button mat-icon-button 
                     color="primary"
-                    routerLink="/classificacaoetaria/edit/{{element.id}}">
+                    routerLink="/admin/classificacaoetaria/edit/{{element.id}}">
                     <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button 

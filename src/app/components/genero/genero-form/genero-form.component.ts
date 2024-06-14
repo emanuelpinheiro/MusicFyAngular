@@ -45,7 +45,7 @@ export class GeneroFormComponent {
         if (genero.id ==null) {
           this.generoService.insert(genero).subscribe({
             next: (generoCadastrado) => {
-              this.router.navigateByUrl('/generos');
+              this.router.navigateByUrl('/admin/generos');
             },
             error: (err: any) => {
               console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -54,7 +54,7 @@ export class GeneroFormComponent {
         } else {
           this.generoService.update(genero).subscribe({
             next: (gravadoraAlterado) => {
-              this.router.navigateByUrl('/generos');
+              this.router.navigateByUrl('/admin/generos');
             },
             error: (err: any) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -70,7 +70,7 @@ export class GeneroFormComponent {
         if (gravadora.id != null) {
           this.generoService.delete(gravadora).subscribe({
             next: () => {
-              this.router.navigateByUrl('/generos');
+              this.router.navigateByUrl('/admin/generos');
             },
             error: (err:any) => {
               console.log('Erro ao Excluir' + JSON.stringify(err));

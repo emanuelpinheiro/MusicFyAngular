@@ -5,7 +5,7 @@
             <form [formGroup]="formGroup">
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Faixa Etária</mat-label>
-                    <input matInput type="text" formControlName="faixaEtaria">
+                    <input matInput type="number" formControlName="faixaEtaria">
                     <mat-error *ngIf="formGroup.get('faixaEtaria') 
                                    && formGroup.get('faixaEtaria')?.invalid
                                    && formGroup.get('faixaEtaria')?.touched">
@@ -38,7 +38,7 @@
                 Excluir 
             </button>
             <button mat-raised-button  
-                    routerLink="/classificacaoetaria"> 
+                    routerLink="/admin/classificacaoetaria"> 
                 Cancelar 
             </button>
 

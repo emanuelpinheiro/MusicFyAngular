@@ -9,12 +9,13 @@ import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ClassificacaoEtaria } from '../../../models/classificacaoetaria.model';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
     selector: 'app-classificacaoetaria-form',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-      MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule],
+      MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatGridListModule],
     templateUrl: './classificacaoetaria-form.component.html',
     styleUrl: './classificacaoetaria-form.component.css'
   })
@@ -29,6 +30,7 @@ import { ClassificacaoEtaria } from '../../../models/classificacaoetaria.model';
       private activatedRoute: ActivatedRoute) {
   
       const classificacaoetaria: ClassificacaoEtaria = activatedRoute.snapshot.data['classificacaoetaria'];
+      console.log("🚀 ~ ClassificacaoEtariaFormComponent ~ classificacaoetaria:", classificacaoetaria)
   
       this.formGroup = formBuilder.group({
         id: [(classificacaoetaria && classificacaoetaria.id) ? classificacaoetaria.id : null],
@@ -67,7 +69,7 @@ import { ClassificacaoEtaria } from '../../../models/classificacaoetaria.model';
         const classificacaoetaria = this.formGroup.value;
         this.classificacaoetariaService.delete(classificacaoetaria).subscribe({
           next: (classificacaoetariaExcluido) => {
-            this.router.navigateByUrl('/classificacaoetaria');
+            this.router.navigateByUrl('/admin/classificacaoetaria');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

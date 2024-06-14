@@ -1,3 +1,8 @@
+/* Toolbar dentro do drawer */
+mat-toolbar {
+  background-color: #0c6c2d; /* Cor de fundo escura do Spotify */
+  color: white; /* Texto em branco */
+}
 .toolbar-title {
     flex: 1;
     text-align: center;
@@ -15,12 +20,8 @@
     padding-right: 24px;
     text-align: center;
   }
-  .mat-column-nome {
+  .mat-column{
     width: 100%;
-  }
-  .mat-column-sigla {
-    text-align: center;
-    min-width: 5em;
   }
   .mat-column-acao {
     text-align: center;

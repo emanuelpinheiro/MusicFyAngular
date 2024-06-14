@@ -103,7 +103,7 @@ interface Produto {
         if (album.id ==null) {
           this.albumService.insert(album).subscribe({
             next: (albumCadastrado) => {
-              this.router.navigateByUrl('/albuns');
+              this.router.navigateByUrl('/admin/albuns');
             },
             error: (err) => {
               console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -112,7 +112,7 @@ interface Produto {
         } else {
           this.albumService.update(album).subscribe({
             next: (albumAlterado) => {
-              this.router.navigateByUrl('/albuns');
+              this.router.navigateByUrl('/admin/albuns');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -128,7 +128,7 @@ interface Produto {
         if (album.id != null) {
           this.albumService.delete(album).subscribe({
             next: () => {
-              this.router.navigateByUrl('/albuns');
+              this.router.navigateByUrl('/admin/albuns');
             },
             error: (err) => {
               console.log('Erro ao Excluir' + JSON.stringify(err));

@@ -9,12 +9,13 @@ import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Compositor } from '../../../models/compositor.model';
+import { MatGridListModule, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
     selector: 'app-compositor-form',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-      MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule],
+      MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, MatGridTile, RouterModule, MatGridListModule],
     templateUrl: './compositor-form.component.html',
     styleUrl: './compositor-form.component.css'
   })
@@ -44,7 +45,7 @@ import { Compositor } from '../../../models/compositor.model';
         if (compositor.id ==null) {
           this.compositorService.insert(compositor).subscribe({
             next: (compositorCadastrado) => {
-              this.router.navigateByUrl('/compositores');
+              this.router.navigateByUrl('/admin/compositores');
             },
             error: (err) => {
               console.log('Erro ao Salvar' + JSON.stringify(err));
@@ -53,7 +54,7 @@ import { Compositor } from '../../../models/compositor.model';
         } else {
           this.compositorService.update(compositor).subscribe({
             next: (compositorAlterado) => {
-              this.router.navigateByUrl('/compositores');
+              this.router.navigateByUrl('/admin/compositores');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -68,7 +69,7 @@ import { Compositor } from '../../../models/compositor.model';
         const compositor = this.formGroup.value;
         this.compositorService.delete(compositor).subscribe({
           next: () => {
-            this.router.navigateByUrl('/compositores');
+            this.router.navigateByUrl('/admin/compositores');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));
