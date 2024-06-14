@@ -59,10 +59,12 @@ export class CdCardListComponent implements OnInit{
   }  
 
   adicionarAoCarrinho(card: Card) {
+    console.log("🚀 ~ CdCardListComponent ~ adicionarAoCarrinho ~ card:", card.urlImagem)
     this.showSnackbarTopPosition('Produto adicionado ao carrinho!', 'Fechar');
     this.carrinhoService.adicionar({
       id: card.idCd,
       nome: card.nome,
+      nomeImagem: card.urlImagem,
       preco: card.preco,
       quantidade: 1
     });

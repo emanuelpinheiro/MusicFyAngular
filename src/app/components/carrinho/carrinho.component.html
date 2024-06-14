@@ -1,15 +1,30 @@
 <!-- carrinho.component.html -->
 <ng-container *ngIf="carrinhoItens.length > 0; else carrinhoVazio">
-    <div *ngFor="let item of carrinhoItens" class="carrinho-item">
-      <h3>{{ item.nome }}</h3>
-      <p>Preço: {{ item.preco }}</p>
-      <p>Quantidade: {{ item.quantidade }}</p>
-      <p>Total: {{ item.quantidade * item.preco }}</p>
-      <button mat-raised-button color="warn" (click)="removerItem(item)">Remover do Carrinho</button>
-    </div>
-    <p>Total do Carrinho: {{ calcularTotal() }}</p>
-    <button mat-raised-button color="primary" (click)="finalizarCompra()" >Finalizar Compra</button>
-  </ng-container>
-  <ng-template #carrinhoVazio>
-    <p>O carrinho está vazio.</p>
-  </ng-template>
+  <div class="container responsive-grid" >
+    <mat-card *ngFor="let item of carrinhoItens" class="card">
+  
+        <img mat-card-image [src]="item.nomeImagem" alt="Card image" class="card-image">
+        <mat-card-content>
+          <div class="card-info">
+            <span class="card-title"> {{item.nome}} </span>
+            <span class="card-title"> Produto: R$ {{item.preco}}</span>
+            <span class="card-title"> Qntd: R$ {{item.quantidade }}</span>
+            <span class="card-price">Total: R$ {{ item.quantidade * item.preco }}</span>
+          </div>
+        </mat-card-content>
+        <br/>
+        <mat-card-actions class="centered-text">
+            <button mat-button color="primary" (click)="removerItem(item)">Remover do Carrinho</button>
+           
+        </mat-card-actions>
+
+    </mat-card>
+    
+  </div>
+  <button mat-raised-button color="primary" (click)="finalizarCompra()" style="margin: 20px">Finalizar Compra</button>
+</ng-container>
+<ng-template #carrinhoVazio>
+  <p>O carrinho está vazio.</p>
+</ng-template>
+
+ 

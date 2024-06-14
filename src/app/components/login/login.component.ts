@@ -72,4 +72,7 @@ export class LoginComponent implements OnInit {
   cadastrar() {
     this.router.navigateByUrl('/cadastro');
   }
+  administrador() {
+    this.router.navigateByUrl('/login/admin');
+  }
 }

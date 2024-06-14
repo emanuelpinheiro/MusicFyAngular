@@ -35,6 +35,7 @@ import { cdResolver } from './components/cd/resolver/cd.resolver';
 import { CdCardListComponent } from './components/cd-card-list/cd-card-list/cd-card-list.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { LoginAdminComponent } from './components/login/login-admin/login-admin/login-admin.component';
+import { MinhasComprasComponent } from './components/minhas-compras/minhas-compras.component';
 
 
 export const routes: Routes = [  
@@ -54,6 +55,7 @@ export const routes: Routes = [
             //{ path: '', component: HomeComponent, title: 'Home'},
             { path: 'produtos', component: CdCardListComponent, title: 'Produtos à Venda'},
             { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos'},
+            { path: 'minhas-compras', component: MinhasComprasComponent, title: 'Lista de Compras'},
         ]
 
     },
@@ -145,6 +147,8 @@ export const routes: Routes = [
             { path: 'edicaoespecial', component: EdicaoEspecialListComponent, title: 'Lista de Edição Especial'},
             { path: 'edicaoespecial/new', component: EdicaoEspecialFormComponent, title: 'Nova Edição Especial'},
             { path: 'edicaoespecial/edit/:id', component: EdicaoEspecialFormComponent, resolve: {edicaoEspecial: edicaoespecialResolver}},
+
+           
 
 
     // { 

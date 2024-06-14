@@ -45,7 +45,7 @@ import { Artista } from '../../../models/artista.models';
         if (artista.id ==null) {
           this.artistaService.insert(artista).subscribe({
             next: (artistaCadastrado) => {
-              this.router.navigateByUrl('/artistas');
+              this.router.navigateByUrl('/admin/artistas');
             },
             error: (err) => {
               console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -54,7 +54,7 @@ import { Artista } from '../../../models/artista.models';
         } else {
           this.artistaService.update(artista).subscribe({
             next: (artistaAlterado) => {
-              this.router.navigateByUrl('/artistas');
+              this.router.navigateByUrl('/admin/artistas');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));
@@ -70,7 +70,7 @@ import { Artista } from '../../../models/artista.models';
         if (artista.id != null) {
           this.artistaService.delete(artista).subscribe({
             next: () => {
-              this.router.navigateByUrl('/artistas');
+              this.router.navigateByUrl('/admin/artistas');
             },
             error: (err) => {
               console.log('Erro ao Excluir' + JSON.stringify(err));

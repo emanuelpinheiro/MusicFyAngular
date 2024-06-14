@@ -43,7 +43,7 @@ import { Gravadora } from '../../../models/gravadora.model';
         if (gravadora.id ==null) {
           this.gravadoraService.insert(gravadora).subscribe({
             next: (gravadoraCadastrado) => {
-              this.router.navigateByUrl('/gravadoras');
+              this.router.navigateByUrl('/admin/gravadoras');
             },
             error: (err) => {
               console.log('Erro ao Salvar' + JSON.stringify(err));
@@ -52,7 +52,7 @@ import { Gravadora } from '../../../models/gravadora.model';
         } else {
           this.gravadoraService.update(gravadora).subscribe({
             next: (gravadoraAlterado) => {
-              this.router.navigateByUrl('/gravadoras');
+              this.router.navigateByUrl('/admin/gravadoras');
             },
             error: (err) => {
               console.log('Erro ao Editar' + JSON.stringify(err));

@@ -1,56 +1,68 @@
-/* Arquivo: cd-card-list.component.css */
-
-/* Container responsivo para grid */
-.container.responsive-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
-    padding: 16px;
-}
-
-/* Estilizando os cards */
-mat-card {
-    background-color: rgb(12, 56, 8); /* Fundo preto */
-    color: white; /* Texto branco */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-mat-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Estilizando a imagem do card */
-mat-card-image {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    height: 200px;
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+  
+  .card {
+    margin: 8px;
+    width: 250px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 250px;
     object-fit: cover;
-}
-
-/* Centralizando o texto */
-.centered-text {
-    text-align: center;
-    margin: 16px 0;
-}
-
-/* Estilizando o botão de ver mais */
-mat-card-actions button {
-    color: white; /* Verde Spotify */
-    border: 1px solid white;
-}
-
-mat-card-actions button:hover {
-    background-color: rgba(30, 215, 96, 0.1);
-}
-
-/* Estilizando o botão de adicionar ao carrinho */
-mat-card-footer button {
-    background-color: white; /* Verde Spotify */
-    color: rgb(12, 56, 8);
-}
-
-mat-card-footer button:hover {
-    background-color: rgb(12, 56, 8); /* Verde escuro Spotify */
-    color: white;
-}
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+  }
+  
+  .card-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  
+  .card-price {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .card-actions {
+    padding: 8px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .card-footer {
+    padding: 8px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #ddd;
+  }
+  
+  .btn-small {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+  
+  .btn-block {
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .btn-block:hover {
+    background-color: #3e8e41;
+  }
