@@ -1,9 +1,40 @@
+/* Arquivo: home.component.css */
+
+/* Toolbar */
+mat-toolbar {
+  background-color: #0c6c2d; /* Cor de fundo escura do Spotify */
+  color: rgb(164, 10, 10); /* Texto em branco */
+}
+
+/* Container de botões */
 .example-button-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  padding-top: 10vh;
+  margin-top: 20px;
+}
 
-  button {
-    margin: 10px;
+/* Botões */
+button[mat-raised-button] {
+  margin: 10px;
+  background-color: #0c6c2d; /* Verde do Spotify */
+  color: white; /* Texto em branco */
+  font-weight: bold;
+}
+
+button[mat-raised-button]:hover {
+  background-color: #189e47; /* Tom mais claro de verde */
+}
+
+/* Layout responsivo */
+@media (max-width: 600px) {
+  .example-button-row {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  button[mat-raised-button] {
+      width: 100%;
+      max-width: 300px;
   }
 }
