@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatBadge } from '@angular/material/badge';
@@ -10,16 +10,19 @@ import { CarrinhoService } from '../../../services/carrinho.service';
 import { Subscription } from 'rxjs';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatToolbar, MatIcon, MatBadge, MatButton, MatIconButton, RouterModule],
+  imports: [MatToolbar, MatIcon, MatBadge, MatButton, MatIconButton, RouterModule, NgIf],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
+  @Input() tipo: number | undefined;
+  
   usuarioLogado: Usuario | null = null;
   private subscription = new Subscription();
 

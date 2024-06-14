@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private baseURL: string = 'http://localhost:8080/auth';
+  private baseURLAdmin: string = 'http://localhost:8080/auth/admin';
   private tokenKey = 'jwt_token';
   private usuarioLogadoKey = 'usuario_logado';
   private usuarioLogadoSubject = new BehaviorSubject<Usuario | null>(null);
@@ -58,6 +59,29 @@ export class AuthService {
       })
     );
   }
+
+  loginAdmin(email: string, senha: string): Observable<any> {
+    const params = {
+      login: email,
+      senha: senha
+    }
+
+    //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
+    return this.http.post(`${this.baseURLAdmin}`, params, {observe: 'response'}).pipe(
+      tap((res: any) => {
+        const authToken = res.headers.get('Authorization') ?? '';
+        if (authToken) {
+          this.setToken(authToken);
+          const usuarioLogado = res.body;
+          if (usuarioLogado) {
+            this.setUsuarioLogado(usuarioLogado);
+            this.usuarioLogadoSubject.next(usuarioLogado);
+          }
+        }
+      })
+    );
+  }
+
 
   setUsuarioLogado(usuario: Usuario): void {
     this.localStorageService.setItem(this.usuarioLogadoKey, usuario);

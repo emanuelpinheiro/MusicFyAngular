@@ -34,11 +34,15 @@ import { CdFormComponent } from './components/cd/cd-form/cd-form.component';
 import { cdResolver } from './components/cd/resolver/cd.resolver';
 import { CdCardListComponent } from './components/cd-card-list/cd-card-list/cd-card-list.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { LoginAdminComponent } from './components/login/login-admin/login-admin/login-admin.component';
 
 
 export const routes: Routes = [  
     
+    
     { path: 'login', component: LoginComponent, title: 'Login'},
+    { path: 'login/admin', component: LoginAdminComponent, title: 'Login'},
+
     { path: '', component: LoginComponent, title: 'Login'},
     { path: 'cadastro', component: CadastroComponent, title: 'Cadastro de Usuário'},
 
