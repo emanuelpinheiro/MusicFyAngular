@@ -15,12 +15,8 @@
     padding-right: 24px;
     text-align: center;
   }
-  .mat-column-nome {
+  .mat-column{
     width: 100%;
-  }
-  .mat-column-sigla {
-    text-align: center;
-    min-width: 5em;
   }
   .mat-column-acao {
     text-align: center;
