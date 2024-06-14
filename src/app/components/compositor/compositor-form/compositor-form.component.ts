@@ -9,12 +9,13 @@ import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Compositor } from '../../../models/compositor.model';
+import { MatGridListModule, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
     selector: 'app-compositor-form',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-      MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule],
+      MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, MatGridTile, RouterModule, MatGridListModule],
     templateUrl: './compositor-form.component.html',
     styleUrl: './compositor-form.component.css'
   })
