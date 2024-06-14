@@ -21,7 +21,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 })
 
 export class FaixaListComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'nome', 'acao'];
+    displayedColumns: string[] = ['id', 'nome', 'compositorNome', 'albumNome', 'acao'];
     listFaixas: Faixa[] = [];
 
     // variaveis de controle de paginacao
@@ -49,6 +49,19 @@ export class FaixaListComponent implements OnInit {
       this.page = event.pageIndex;
       this.pageSize = event.pageSize;
       this.ngOnInit();
+      }
+
+      excluir(faixa: Faixa){
+        if(faixa != null){
+            this.faixaService.delete(faixa).subscribe({
+              next: () => {
+                this.getAllFaixas();
+              },
+              error: (err) => {
+                console.log('Erro ao Excluir' + JSON.stringify(err));
+              }
+            });
+        }
       }
       
   }
