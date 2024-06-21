@@ -1,24 +1,23 @@
-<div style="margin: 20px; margin-top: 30px; width: 70%; margin-left: auto; margin-right: auto;">
-  <mat-card appearance="outlined">
+<div class="main-container">
+  <mat-card appearance="outlined" class="main-card">
     <mat-card-content>
       <mat-tab-group mat-align-tabs="center" mat-stretch-tabs="false" [(selectedIndex)]="selectedTabIndex">
         <mat-tab label="Carrinho">
           <ng-container *ngIf="carrinhoItens.length > 0; else carrinhoVazio">
             <div class="container responsive-grid">
               <mat-card *ngFor="let item of carrinhoItens" class="card">
-                <img mat-card-image [src]="item.nomeImagem" alt="Card image" class="card-image">
+                <img mat-card-image src="../../../assets/img/album.png" alt="Card image" class="card-image">
                 <mat-card-content>
                   <div class="card-info">
-                    <span class="card-title"> {{item.nome}} </span>
-                    <span class="card-title"> Produto: R$ {{item.preco}}</span>
-                    <span class="card-title"> Qntd: R$ {{item.quantidade }}</span>
-                    <input matInput type="number" [(ngModel)]="item.quantidade" min="1">
+                    <span class="card-title"> {{item.nome}} </span><br>
+                    <span class="card-subtitle"> Valor: R$ {{item.preco}}</span><br>
+                    <span class="card-subtitle"> Qntd: <input matInput type="number" [(ngModel)]="item.quantidade" min="1" class="quantity-input"><br></span><br>
+                   
                     <span class="card-price">Total: R$ {{ item.quantidade * item.preco }}</span>
                   </div>
                 </mat-card-content>
-                <br/>
                 <mat-card-actions class="centered-text">
-                  <button mat-button color="primary" (click)="removerItem(item)">Remover do Carrinho</button>
+                  <button mat-button color="warn" (click)="removerItem(item)">Remover do Carrinho</button>
                 </mat-card-actions>
               </mat-card>
             </div>
@@ -50,14 +49,12 @@
                 <p>Número: {{ mascaraCartao() }}</p>
                 <p>Data de Expiração: {{ cartao?.dataExpiracao }}</p>
               </div>
-
               
               <h3>Total:</h3>
               <p>R$ {{ getTotal() }}</p>
-              
             </div>
           </ng-container>
-          <button mat-raised-button color="primary" (click)="finalizarCompra()" >Finalizar Compra</button>
+          <button mat-raised-button color="primary" (click)="finalizarCompra()">Finalizar Compra</button>
         </mat-tab>
       </mat-tab-group>
     </mat-card-content>
