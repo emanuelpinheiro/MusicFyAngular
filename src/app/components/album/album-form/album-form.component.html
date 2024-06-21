@@ -136,6 +136,16 @@
 
         </mat-form-field>
 
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Imagem da Cd</mat-label>
+          <input type="file" (change)="carregarImagemSelecionada($event)" hidden #fileInput>
+          <input matInput [value]="fileName" readonly>
+          
+          <button mat-icon-button matSuffix (click)="fileInput.click()">
+              <mat-icon>folder_open</mat-icon>
+          </button>   
+      </mat-form-field>
+
 
       </form>
     </mat-card-content>

@@ -18,6 +18,9 @@ import { Gravadora } from '../../../models/gravadora.model';
 import { GeneroService } from '../../../services/genero.service';
 import { Genero } from '../../../models/genero.model';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { CdService } from '../../../services/cd.service';
+import { Location } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 interface Produto {
   id: number;
@@ -28,7 +31,7 @@ interface Produto {
     selector: 'app-album-form',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-      MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, FormsModule, MatGridListModule],
+      MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule, MatSelectModule, FormsModule, MatGridListModule, MatIconModule],
     templateUrl: './album-form.component.html',
     styleUrl: './album-form.component.css'
   })
@@ -40,6 +43,10 @@ interface Produto {
       {id: 1, nome: 'DVD'}
     ];
 
+    fileName: string = '';
+    selectedFile: File | null = null; 
+    imagePreview: string | ArrayBuffer | null = null;
+
     listArtistas: Artista[] = [];
     listGravadoras: Gravadora[] = [];
     listGeneros: Genero[] = [];
@@ -48,11 +55,13 @@ interface Produto {
   
     constructor(private formBuilder: FormBuilder,
       private albumService: AlbumService,
+      private cdService: CdService,
       private router: Router,
       private activatedRoute: ActivatedRoute,
       private artistaService: ArtistaService,
       private gravadoraService: GravadoraService,
-      private generoService: GeneroService) {
+      private generoService: GeneroService,
+      private location: Location) {
   
       const album: Album = activatedRoute.snapshot.data['album'];
   
@@ -72,6 +81,9 @@ interface Produto {
 
       });
   
+    }
+    voltarPagina() {
+      this.location.back();
     }
 
     ngOnInit(): void {
@@ -135,6 +147,36 @@ interface Produto {
             }
           });
         }
+      }
+    }
+
+    carregarImagemSelecionada(event: any) {
+      this.selectedFile = event.target.files[0];
+  
+      if (this.selectedFile) {
+        this.fileName = this.selectedFile.name;
+        // carregando image preview
+        const reader = new FileReader();
+        reader.onload = e => this.imagePreview = reader.result;
+        reader.readAsDataURL(this.selectedFile);
+      }
+  
+    }
+  
+    private uploadImage(cdId: number) {
+      if (this.selectedFile) {
+        this.albumService.uploadImagem(cdId, this.selectedFile.name, this.selectedFile)
+        .subscribe({
+          next: () => {
+            this.voltarPagina();
+          },
+          error: err => {
+            console.log('Erro ao fazer o upload da imagem');
+            // tratar o erro
+          }
+        })
+      } else {
+        this.voltarPagina();
       }
     }
   

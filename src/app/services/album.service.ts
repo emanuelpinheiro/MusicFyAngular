@@ -49,4 +49,13 @@ export class AlbumService {
     return `${this.baseUrl}/image/download/${nomeImagem}`;
   }
 
+  uploadImagem(id: number, nomeImagem: string, imagem: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('id', id.toString());
+    formData.append('nomeImagem', imagem.name);
+    formData.append('imagem', imagem, imagem.name);
+    
+    return this.httpClient.patch<Album>(`${this.baseUrl}/image/upload`, formData);
+  }
+
 }
