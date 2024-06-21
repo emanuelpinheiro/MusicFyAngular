@@ -7,4 +7,5 @@ export interface Pedido {
     pagamento?: number;
     endereco?: number;
     itens?: any;
+    cartao: any;
 }

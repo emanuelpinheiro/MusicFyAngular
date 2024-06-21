@@ -1,19 +1,30 @@
 <div class="container responsive-grid">
-    <mat-card *ngFor="let card of cards()" class="card">
-      <img mat-card-image [src]="card.urlImagem" alt="Card image" class="card-image">
-      <mat-card-content>
-        <div class="card-info">
-          <span class="card-title">{{ card.nome }}</span>
-          <span class="card-price">R$ {{ card.preco }}</span>
-        </div>
-      </mat-card-content>
-      <!-- <mat-card-actions class="card-actions">
-        <button mat-button color="primary" class="btn-small">Ver mais...</button>
-      </mat-card-actions> -->
-      <mat-card-footer class="card-footer">
-        <button mat-flat-button (click)="adicionarAoCarrinho(card)" class="btn-small btn-block">
-          Adicionar ao carrinho
-        </button>
-      </mat-card-footer>
-    </mat-card>
-  </div>
+  <mat-card *ngFor="let card of cards()" class="card">
+    <img mat-card-image src="../../../../assets/img/banda1.webp" alt="Card image" class="card-image">
+    <mat-card-content>
+      <div class="card-info">
+        <span class="card-title">{{ card.nome }}</span>
+        <span class="card-artist">{{ card.artista.nome }}</span>
+        <span class="card-year">{{ card.anoLancamento }}</span>
+        <span class="card-genre">{{ card.genero.nome }}</span>
+        <span class="card-label">{{ card.gravadora.nome }}</span>
+        <span class="card-stock">Estoque: {{ card.estoque }}</span>
+        <span class="card-tracks">
+          <strong>Faixas:</strong>
+          <ng-template *ngIf="card.faixas; else noTracks">
+            <li *ngFor="let faixa in card.faixas">{{ faixa.nome }}</li>
+          </ng-template>
+          <ng-template #noTracks>
+            <span>Nenhuma faixa disponível</span>
+          </ng-template>
+        </span>
+        <span class="card-price">R$ {{ card.preco }}</span>
+      </div>
+    </mat-card-content>
+    <mat-card-footer class="card-footer">
+      <button mat-flat-button (click)="adicionarAoCarrinho(card)" class="btn-small btn-block">
+        Adicionar ao carrinho
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</div>

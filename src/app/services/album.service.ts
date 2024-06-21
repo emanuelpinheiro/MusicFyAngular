@@ -45,4 +45,8 @@ export class AlbumService {
     return this.httpClient.delete<any>(`${this.baseUrl}/${album.id}`);
   }
 
+  getUrlImagem(nomeImagem: string): string {
+    return `${this.baseUrl}/image/download/${nomeImagem}`;
+  }
+
 }

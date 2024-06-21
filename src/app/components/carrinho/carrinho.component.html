@@ -1,30 +1,55 @@
 <!-- carrinho.component.html -->
-<ng-container *ngIf="carrinhoItens.length > 0; else carrinhoVazio">
-  <div class="container responsive-grid" >
-    <mat-card *ngFor="let item of carrinhoItens" class="card">
-  
-        <img mat-card-image [src]="item.nomeImagem" alt="Card image" class="card-image">
-        <mat-card-content>
-          <div class="card-info">
-            <span class="card-title"> {{item.nome}} </span>
-            <span class="card-title"> Produto: R$ {{item.preco}}</span>
-            <span class="card-title"> Qntd: R$ {{item.quantidade }}</span>
-            <span class="card-price">Total: R$ {{ item.quantidade * item.preco }}</span>
-          </div>
-        </mat-card-content>
-        <br/>
-        <mat-card-actions class="centered-text">
-            <button mat-button color="primary" (click)="removerItem(item)">Remover do Carrinho</button>
-           
-        </mat-card-actions>
 
-    </mat-card>
-    
-  </div>
-  <button mat-raised-button color="primary" (click)="finalizarCompra()" style="margin: 20px">Finalizar Compra</button>
-</ng-container>
+<div style="margin: 20px; margin-top: 30px; width: 70%; margin-left: auto; margin-right: auto;">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <mat-tab-group mat-align-tabs="center" mat-stretch-tabs="false">
+        <mat-tab label="Carrinho">
+          <ng-container *ngIf="carrinhoItens.length > 0; else carrinhoVazio">
+            <div class="container responsive-grid" >
+              <mat-card *ngFor="let item of carrinhoItens" class="card">
+            
+                  <img mat-card-image [src]="item.nomeImagem" alt="Card image" class="card-image">
+                  <mat-card-content>
+                    <div class="card-info">
+                      <span class="card-title"> {{item.nome}} </span>
+                      <span class="card-title"> Produto: R$ {{item.preco}}</span>
+                      <span class="card-title"> Qntd: R$ {{item.quantidade }}</span>
+                        <input matInput type="number" [(ngModel)]="item.quantidade" min="1">
+                      <span class="card-price">Total: R$ {{ item.quantidade * item.preco }}</span>
+                    </div>
+                  </mat-card-content>
+                  <br/>
+                  <mat-card-actions class="centered-text">
+                      <button mat-button color="primary" (click)="removerItem(item)">Remover do Carrinho</button>
+                     
+                  </mat-card-actions>
+          
+              </mat-card>
+              
+            </div>
+
+            <h4>Método de Pagamento:</h4>
+              <mat-form-field>
+                <mat-label>Selecione o metodo</mat-label>
+                <mat-select (selectionChange)="onSelectionChange($event)">
+                  @for (pag of pagamentos; track pag) {
+                    <mat-option [value]="pag.value">{{pag.viewValue}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+          </ng-container>
+        </mat-tab>
+        <mat-tab label="Finalizar Compra" [disabled]="auxiliar">Finalizar Compra</mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>
 <ng-template #carrinhoVazio>
   <p>O carrinho está vazio.</p>
 </ng-template>
+
+
+
 
  

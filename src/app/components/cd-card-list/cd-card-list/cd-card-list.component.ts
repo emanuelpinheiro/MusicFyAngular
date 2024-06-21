@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardTitle } from '@angular/material/card';
@@ -6,11 +6,23 @@ import { CdService } from '../../../services/cd.service';
 import { CarrinhoService } from '../../../services/carrinho.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Cd } from '../../../models/cd.model';
+import { AlbumService } from '../../../services/album.service';
+import { Album } from '../../../models/album.model';
+import { Artista } from '../../../models/artista.models';
+import { Faixa } from '../../../models/faixa.model';
+import { Genero } from '../../../models/genero.model';
+import { Gravadora } from '../../../models/gravadora.model';
 
 // tipo personalizado de dados, como classes e interfaces, porém mais simples.
 type Card = {
-  idCd: number;
+  idAlbum: number;
   nome: string;
+  anoLancamento: string;
+  artista: Artista;
+  estoque: number;
+  faixas: Faixa;
+  genero: Genero;
+  gravadora: Gravadora;
   preco: number;
   urlImagem: string;
 }
@@ -19,40 +31,46 @@ type Card = {
 @Component({
   selector: 'app-cd-card-list',
   standalone: true,
-  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton],
+  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor,NgIf, MatButton],
   templateUrl: './cd-card-list.component.html',
   styleUrl: './cd-card-list.component.css'
 })
 export class CdCardListComponent implements OnInit{
 
   cards = signal<Card[]> ([]);
-  cds: Cd[] = [];
+  albums: Album[] = [];
 
-  constructor(private cdService: CdService, 
+  constructor(private albumService: AlbumService, 
               private carrinhoService: CarrinhoService,
               private snackBar: MatSnackBar) {} 
 
   ngOnInit(): void {
-    this.carregarCds();
+    this.carregarAlbums();
   }
 
-  carregarCds() {
+  carregarAlbums() {
     // buscando todos os cds
-    this.cdService.findAll(0, 10).subscribe(data => {
-      this.cds = data;
-      console.log("🚀 ~ CdCardListComponent ~ this.cdService.findAll ~ this.cds:", this.cds)
+    this.albumService.findAll(0, 10).subscribe(data => {
+      this.albums = data;
+      console.log("🚀 ~ CdCardListComponent ~ this.albumService.findAll ~ this.albums:", this.albums)
       this.carregarCards();
     });
   }
 
   carregarCards() {
     const cards: Card[] = [];
-    this.cds.forEach(cd => {
+    this.albums.forEach(albm => {
       cards.push({
-        idCd: cd.id,
-        nome: cd.nome,
-        preco: cd.preco,
-        urlImagem: this.cdService.getUrlImagem(cd.nomeImagem)
+        idAlbum: albm.id,
+        nome: albm.nome,
+        anoLancamento: albm.anoLancamento,
+        artista: albm.artista,
+        estoque: albm.estoque,
+        faixas: albm.faixas,
+        genero: albm.genero,
+        gravadora: albm.gravadora,
+        preco: albm.preco,
+        urlImagem: this.albumService.getUrlImagem(albm.nomeImagem)
       });
     });
     this.cards.set(cards);
@@ -62,7 +80,7 @@ export class CdCardListComponent implements OnInit{
     console.log("🚀 ~ CdCardListComponent ~ adicionarAoCarrinho ~ card:", card.urlImagem)
     this.showSnackbarTopPosition('Produto adicionado ao carrinho!', 'Fechar');
     this.carrinhoService.adicionar({
-      id: card.idCd,
+      id: card.idAlbum,
       nome: card.nome,
       nomeImagem: card.urlImagem,
       preco: card.preco,
