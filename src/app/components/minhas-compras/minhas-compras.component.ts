@@ -31,29 +31,28 @@ export class MinhasComprasComponent implements OnInit {
   }
 
   
-  ngOnInit(): void {
-    this.obterCompras();
+  async ngOnInit(): Promise<void> {
+    console.log(this.authService.getUsuarioLogado());
+   
+    await this.obterUsuarioLogado();
+    await this.obterCompras();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  // async obterUsuarioLogado() {
-  //   this.subscription.add(this.authService.getUsuarioLogado().subscribe(
-  //     usuario => {
-  //       if (usuario) {
-  //         this.usuarioLogado = usuario;
-  //         this.obterComprasUsuario(usuario.id);
-  //       }
-  //     }
-  //   ));
-  // }
+  async obterUsuarioLogado() {
+   this.authService.getUsuarioLogado().subscribe((usuario: any) => {
+      console.log("🚀 ~ MinhasComprasComponent ~ usuario:", usuario)
+      this.usuarioLogado = usuario;
+    });
+  }
   
 
   async obterCompras(){
-    this.pedidoService.findAll().subscribe(data => {
-      console.log("🚀 ~ MinhasComprasComponent ~ this.pedidoService.findAll ~ data:", data)
+    
+    this.pedidoService.findById(this.usuarioLogado.id).subscribe(data => {
       this.listCompras = data;
     })
   }
