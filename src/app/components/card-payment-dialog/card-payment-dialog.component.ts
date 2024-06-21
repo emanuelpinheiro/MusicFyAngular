@@ -29,8 +29,11 @@ export class CardPaymentDialogComponent {
     cvv: ''
   };
 
-  closeDialog(): void {
+  salvarCartao(): void {
     
     this.dialogRef.close(this.cardDetails);
+  }
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }

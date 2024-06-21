@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ItemCarrinho } from '../../models/itemcarrinho.model';
 import { CarrinhoService } from '../../services/carrinho.service';
 import { MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardTitle } from '@angular/material/card';
@@ -11,7 +11,7 @@ import { MatFormField } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CardPaymentDialogComponent } from '../card-payment-dialog/card-payment-dialog.component';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectChange, MatSelectModule} from '@angular/material/select';
@@ -24,16 +24,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrl: './carrinho.component.css'
 })
 export class CarrinhoComponent implements OnInit {
-
+  @Output() changeTab = new EventEmitter<void>();
+  @ViewChild(MatTabGroup) tabGroup: MatTabGroup | undefined;
   pagamentos: any[] = [
     {value: 1, viewValue: 'PIX'},
     {value: 2, viewValue: 'Boleto'},
     {value: 3, viewValue: 'Cartão Crédito / Débito'},
   ];
-
+  selectedTabIndex: number = 0;
   carrinhoItens: ItemCarrinho[] = [];
   auxiliar: boolean = true;
   cartao: any;
+  selectedValue: any;
 
   constructor(private carrinhoService: CarrinhoService,
               private pedidoService: PedidosService,
@@ -64,7 +66,7 @@ export class CarrinhoComponent implements OnInit {
     }));
   
     const body: Pedido = {
-      pagamento: 3,
+      pagamento: this.selectedValue,
       cartao: this.cartao,
       itens: itensFormatados,
     }
@@ -73,6 +75,8 @@ export class CarrinhoComponent implements OnInit {
       this.pedidoService.insert(body).subscribe({
         next: (gravadoraCadastrado) => {
           this.router.navigateByUrl('/loja/minhas-compras');
+          this.cartao = null;
+          this.carrinhoService.removerTudo();
         },
         error: (err) => {
           console.log('Erro ao Salvar' + JSON.stringify(err));
@@ -84,28 +88,47 @@ export class CarrinhoComponent implements OnInit {
   selecionarPagamento(): void {
     const dialogRef = this.dialog.open(CardPaymentDialogComponent, {
       width: '50%',
-      height: '50%',
+      height: '30%',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.cartao = result;
       this.auxiliar = false;
+      if(result != null){
+        this.auxiliar = false;
+        this.selectedTabIndex = 2;
+        // this.finalizarCompra();
+      }
       console.log(result);
     });
    
   }
 
+  
   onSelectionChange(event: MatSelectChange) {
-    const selectedValue = event.value;
-    if(selectedValue === 3){
+    this.selectedValue = event.value;
+    if(this.selectedValue === 3){
       this.selecionarPagamento();
+    }else{
+      this.auxiliar = false;
+      this.selectedTabIndex = 2;
     }
     // Você pode fazer outras operações com o valor selecionado aqui
   }
 
+  getTotal(): number {
+    return this.carrinhoItens.reduce((total, item) => total + (item.preco * item.quantidade), 0);
+  }
 
-  calcularTotal(): number {
-    return 1;
+  getPagamentoNome(): string {
+    const pagamento = this.pagamentos.find(p => p.value === this.selectedValue);
+    return pagamento ? pagamento.viewValue : 'Nenhum método selecionado';
+  }
+
+  mascaraCartao(): string {
+    const numeroCartao = this.cartao?.numero; 
+    const parteMascarada = '************' + numeroCartao?.substr(-4);
+    return parteMascarada;
   }
 
 }

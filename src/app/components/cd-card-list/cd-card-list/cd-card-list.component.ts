@@ -12,6 +12,8 @@ import { Artista } from '../../../models/artista.models';
 import { Faixa } from '../../../models/faixa.model';
 import { Genero } from '../../../models/genero.model';
 import { Gravadora } from '../../../models/gravadora.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailsDialogComponent } from '../../details-dialog/details-dialog.component';
 
 // tipo personalizado de dados, como classes e interfaces, porém mais simples.
 type Card = {
@@ -42,7 +44,8 @@ export class CdCardListComponent implements OnInit{
 
   constructor(private albumService: AlbumService, 
               private carrinhoService: CarrinhoService,
-              private snackBar: MatSnackBar) {} 
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog) {} 
 
   ngOnInit(): void {
     this.carregarAlbums();
@@ -93,6 +96,19 @@ export class CdCardListComponent implements OnInit{
       duration: 2000,
       verticalPosition: 'top',
       horizontalPosition: "center"
+    });
+  }
+
+  verMais(card: Card){
+    console.log("🚀 ~ CdCardListComponent ~ verMais ~ card:", card)
+    const dialogRef = this.dialog.open(DetailsDialogComponent, {
+      width: '35%',
+      height: '450px',
+      data: card
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
     });
   }
 }

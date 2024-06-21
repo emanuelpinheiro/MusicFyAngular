@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Pagamento com Cartão</h2>
 <mat-dialog-content class="payment-dialog-content">
- 
+  <mat-grid-list cols="4" rowHeight="3:1">
     <mat-grid-tile>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Número do Cartão</mat-label>
@@ -23,16 +23,20 @@
         <mat-icon matPrefix>event</mat-icon>
         <input matInput [(ngModel)]="cardDetails.dataExpiracao" placeholder="MM/YY">
       </mat-form-field>
-
+    </mat-grid-tile>
+    <mat-grid-tile >
       <mat-form-field appearance="outline" class="half-width">
         <mat-label>CVV</mat-label>
         <mat-icon matPrefix>lock</mat-icon>
         <input matInput [(ngModel)]="cardDetails.cvv" placeholder="123">
       </mat-form-field>
     </mat-grid-tile>
+  </mat-grid-list>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="closeDialog()">Fechar</button>
+    <button mat-raised-button color="primary" (click)="salvarCartao()" >Salvar</button>
+  </mat-dialog-actions>
+  
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button mat-button (click)="closeDialog()">Fechar</button>
-  <button mat-raised-button color="primary" >Salvar</button>
-</mat-dialog-actions>
+
