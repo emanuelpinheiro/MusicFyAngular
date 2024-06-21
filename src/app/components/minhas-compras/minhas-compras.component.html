@@ -1,14 +1,20 @@
-
-<div class="container responsive-grid" >
+<div class="container responsive-grid">
     <mat-card *ngFor="let item of listCompras" class="card">
-        <mat-card-content>
-            <div class="card-info">
-            <span class="card-title"> {{item.cliente.nome}} </span>
-            <span class="card-title"> Total dos Pedido: R$ {{item.totalPedido}}</span>
-            <span class="card-title"> Status: {{item.statusPedio.label}}</span>
-            <span class="card-price">Pagamento: {{item.pagamento.label}}</span>
-            </div>
-        </mat-card-content>
-        <br/>
+      <mat-card-content>
+        <div class="card-info">
+          <span class="card-title"> {{ item.cliente.nome }} </span>
+          <p><strong>Data da Compra:</strong> {{ item.dataCompra | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
+          <div class="product-list">
+            <p><strong>Produtos:</strong></p>
+            <ul>
+              <li *ngFor="let prod of item.itens">{{ prod.album.nome }}</li>
+            </ul>
+          </div>
+          <p><strong>Total Pedido:</strong> R$ {{ item.totalPedido }}</p>
+          <p><strong>Status:</strong> {{ item.statusPedio.label }}</p>
+          <p><strong>Pagamento:</strong> {{ item.pagamento.label }}</p>
+        </div>
+      </mat-card-content>
     </mat-card>
-    </div>
+  </div>
+  

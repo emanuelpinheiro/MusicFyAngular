@@ -36,6 +36,7 @@ import { CdCardListComponent } from './components/cd-card-list/cd-card-list/cd-c
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { LoginAdminComponent } from './components/login/login-admin/login-admin/login-admin.component';
 import { MinhasComprasComponent } from './components/minhas-compras/minhas-compras.component';
+import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.component';
 
 
 export const routes: Routes = [  
@@ -43,6 +44,7 @@ export const routes: Routes = [
     
     { path: 'login', component: LoginComponent, title: 'Login'},
     { path: 'login/admin', component: LoginAdminComponent, title: 'Login'},
+    { path: 'recuperar-senha', component: EsqueciSenhaComponent, title: 'Recuperar Senha'},
 
     { path: '', component: LoginComponent, title: 'Login'},
     { path: 'cadastro', component: CadastroComponent, title: 'Cadastro de Usuário'},

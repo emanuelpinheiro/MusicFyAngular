@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Detalhes do Álbum</h2>
+<mat-dialog-content class="payment-dialog-content">
+  <div>
+    <p><strong>Nome do Álbum:</strong> {{ card.nome }}</p>
+    <p><strong>Ano de Lançamento:</strong> {{ card.anoLancamento }}</p>
+    <p><strong>Artista:</strong> {{ card.artista.nome }}</p>
+    <p><strong>Gênero:</strong> {{ card.genero.nome }}</p>
+    <p><strong>Gravadora:</strong> {{ card.gravadora.nome }}</p>
+    <p *ngIf="card.faixas && card.faixas.length > 0"><strong>Faixas:</strong></p>
+    <ul>
+      <li *ngFor="let faixa of card.faixas">{{ faixa.nome }}</li>
+    </ul>
+    <p><strong>Preço:</strong> R$ {{ card.preco }}</p>
+    <p><strong>Estoque:</strong> {{ card.estoque }}</p>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="closeDialog()">Fechar</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

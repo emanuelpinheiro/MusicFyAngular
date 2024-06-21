@@ -1,0 +1,17 @@
+.payment-dialog-content {
+    padding: 16px;
+  }
+  
+  mat-form-field.full-width {
+    width: 100%;
+  }
+
+  
+  mat-grid-tile {
+    padding: 8px 0;
+  }
+  
+  mat-dialog-actions {
+    padding: 16px;
+  }
+  
